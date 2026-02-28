@@ -21,7 +21,7 @@ export const routes: Routes = [
       }).then((m) => m.Component),
   },
   {
-    path: 'user',
+    path: 'users',
     loadComponent: () =>
       loadRemoteModule({
         type: 'module',
