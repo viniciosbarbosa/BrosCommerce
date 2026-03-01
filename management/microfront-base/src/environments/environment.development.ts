@@ -3,4 +3,5 @@ export const environment = {
   apiUrl: 'http://localhost:3000',
   supportedLangs: ['pt', 'en', 'es'],
   defaultLang: 'es',
+  theme: 'theme-dark',
 };

@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+// ─── 1. TODOS OS @use PRIMEIRO ────────────────────────────
+@use '@angular/material' as mat;
+@use 'app/shared/scss/variables' as *;
+@use 'app/shared/scss/reset';
+@use 'app/shared/scss/themes/light';
+@use 'app/shared/scss/themes/dark';
+@use 'app/shared/scss/themes/neutral';
+
+// ─── 2. MATERIAL CORE ─────────────────────────────────────
+@include mat.core();
+
+// ─── 3. MATERIAL THEMES ───────────────────────────────────
+$theme-light: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+    ),
+  )
+);
+$theme-dark: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$azure-palette,
+    ),
+  )
+);
+$theme-neutral: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$violet-palette,
+    ),
+  )
+);
+
+.theme-light {
+  @include mat.all-component-themes($theme-light);
+}
+.theme-dark {
+  @include mat.all-component-themes($theme-dark);
+}
+.theme-neutral {
+  @include mat.all-component-themes($theme-neutral);
+}

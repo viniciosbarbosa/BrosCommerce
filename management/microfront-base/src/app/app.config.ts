@@ -12,6 +12,7 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
+import { ThemeService } from './shared/services/theme/theme.service';
 
 function getBrowserLang(): string {
   const browserLang = navigator.language?.split('-')[0];
@@ -31,6 +32,7 @@ export const appConfig: ApplicationConfig = {
       suffix: '.json',
     }),
     provideAppInitializer(() => {
+      inject(ThemeService).init();
       const translate = inject(TranslateService);
       const lang = getBrowserLang();
       translate.addLangs(environment.supportedLangs);
