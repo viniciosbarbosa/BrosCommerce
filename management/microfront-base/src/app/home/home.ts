@@ -8,12 +8,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home implements OnInit {
+export class Home {
   private translate = inject(TranslateService);
-
-  ngOnInit(): void {
-    this.translate.use('pt');
-  }
 
   changeLanguage(language: string) {
     this.translate.use(language);
