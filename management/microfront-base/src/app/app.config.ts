@@ -11,7 +11,7 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
 
 const SUPPORTED_LANGS = ['pt', 'en', 'es'];
-const DEFAULT_LANG = 'en';~
+const DEFAULT_LANG = 'en';
 
 export const appConfig: ApplicationConfig = {
   providers: [
