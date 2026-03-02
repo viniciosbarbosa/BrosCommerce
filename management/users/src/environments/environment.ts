@@ -4,4 +4,5 @@ export const environment = {
   supportedLangs: ['pt', 'en', 'es'],
   defaultLang: 'es',
   theme: 'theme-dark',
+  i18nUrl: 'http://localhost:4203/assets/i18n/',
 };

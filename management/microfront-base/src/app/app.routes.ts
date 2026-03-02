@@ -1,23 +1,24 @@
 import { Routes } from '@angular/router';
 import { Home } from './features/home/home';
 import { loadRemoteModule } from '@angular-architects/module-federation';
+import { environment } from '../environments/environment.development';
 export const routes: Routes = [
   {
     path: 'info',
-    loadComponent: () =>
+    loadChildren: () =>
       loadRemoteModule({
         type: 'module',
-        remoteEntry: 'http://localhost:4201/remoteEntry.js',
-        exposedModule: './Component',
-      }).then((m) => m.Component),
+        remoteEntry: environment.remotes.info,
+        exposedModule: './routes',
+      }).then((m) => m.routes),
   },
   {
     path: 'report',
-    loadComponent: () =>
+    loadChildren: () =>
       loadRemoteModule({
         type: 'module',
-        remoteEntry: 'http://localhost:4202/remoteEntry.js',
-        exposedModule: './Component',
+        remoteEntry: environment.remotes.report,
+        exposedModule: './routes',
       }).then((m) => m.Component),
   },
   {
@@ -25,7 +26,7 @@ export const routes: Routes = [
     loadChildren: () =>
       loadRemoteModule({
         type: 'module',
-        remoteEntry: 'http://localhost:4203/remoteEntry.js',
+        remoteEntry: environment.remotes.users,
         exposedModule: './routes',
       }).then((m) => m.routes),
   },
