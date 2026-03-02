@@ -1,3 +1,6 @@
 {
-  "HELLO": "Hola mundo"
+  "LOGIN": "Login",
+  "PRODUCTS": "Produtos",
+  "ABOUT": "Sobre nós",
+  "CONTACT": "Contato"
 }

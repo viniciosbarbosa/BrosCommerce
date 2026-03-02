@@ -6,67 +6,72 @@
       </a>
     </div>
 
-    <nav class="nav-menu desktop-only">
-      <ul class="nav-list">
-        <li class="nav-item"><a href="#" class="nav-link">Início</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Produtos</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Sobre nós</a></li>
-      </ul>
-    </nav>
+    <!-- Navigation and Actions aligned to the right -->
+    <div class="header-right desktop-only">
+      <nav class="nav-menu">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="#" class="nav-link">{{ 'LOGIN' | translate }}</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">{{ 'PRODUCTS' | translate }}</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">{{ 'ABOUT' | translate }}</a>
+          </li>
+        </ul>
+      </nav>
 
-    <div class="header-actions desktop-only">
-      <div class="selectors-group">
-        <div class="selector dropdown">
-          <button class="selector-btn">
-            <span>{{
-              languageService.currentLanguage() === Lang.PT
-                ? '🇧🇷'
-                : languageService.currentLanguage() === Lang.EN
-                  ? '🇺🇸'
-                  : '🇪🇸'
-            }}</span>
-          </button>
-          <div class="dropdown-content">
-            <button
-              [class.active]="languageService.currentLanguage() === Lang.PT"
-              (click)="changeLanguage(Lang.PT)"
-            >
-              🇧🇷 Português
+      <div class="header-actions">
+        <div class="selectors-group">
+          <!-- Language Selector -->
+          <div class="selector dropdown">
+            <button class="selector-btn">
+              <span>
+                @if (languageService.currentLanguage() === Lang.PT.code) {
+                  {{ Lang.PT.icon }}
+                } @else if (languageService.currentLanguage() === Lang.EN.code) {
+                  {{ Lang.EN.icon }}
+                } @else if (languageService.currentLanguage() === Lang.ES.code) {
+                  {{ Lang.ES.icon }}
+                }
+              </span>
             </button>
-            <button
-              [class.active]="languageService.currentLanguage() === Lang.EN"
-              (click)="changeLanguage(Lang.EN)"
-            >
-              🇺🇸 English
+            <div class="dropdown-content">
+              @for (lang of Object.values(Lang); track lang.code) {
+                <button
+                  [class.active]="languageService.currentLanguage() === lang.code"
+                  (click)="changeLanguage(lang.code)"
+                >
+                  {{ lang.icon }} {{ lang.name }}
+                </button>
+              }
+            </div>
+          </div>
+
+          <!-- Theme Selector -->
+          <div class="selector dropdown">
+            <button class="selector-btn">
+              <span>{{
+                themeService.currentTheme() === Theme.LIGHT
+                  ? '☀️'
+                  : themeService.currentTheme() === Theme.DARK
+                    ? '🌙'
+                    : '🩶'
+              }}</span>
             </button>
-            <button
-              [class.active]="languageService.currentLanguage() === Lang.ES"
-              (click)="changeLanguage(Lang.ES)"
-            >
-              🇪🇸 Español
-            </button>
+            <div class="dropdown-content">
+              @for (t of [Theme.LIGHT, Theme.DARK, Theme.NEUTRAL]; track t) {
+                <button [class.active]="themeService.currentTheme() === t" (click)="setTheme(t)">
+                  {{ t === Theme.LIGHT ? '☀️ Light' : t === Theme.DARK ? '🌙 Dark' : '🩶 Neutral' }}
+                </button>
+              }
+            </div>
           </div>
         </div>
 
-        <div class="selector dropdown">
-          <button class="selector-btn">
-            <span>{{
-              themeService.currentTheme() === Theme.LIGHT
-                ? '☀️'
-                : themeService.currentTheme() === Theme.DARK
-                  ? '🌙'
-                  : '🩶'
-            }}</span>
-          </button>
-          <div class="dropdown-content">
-            <button (click)="setTheme(Theme.LIGHT)">☀️ Light</button>
-            <button (click)="setTheme(Theme.DARK)">🌙 Dark</button>
-            <button (click)="setTheme(Theme.NEUTRAL)">🩶 Neutral</button>
-          </div>
-        </div>
+        <a href="#" class="nav-link btn-contact">{{ 'CONTACT' | translate }}</a>
       </div>
-
-      <a href="#" class="nav-link btn-contact">Contato</a>
     </div>
 
     <button class="burger-btn mobile-only" (click)="toggleMenu()" [class.active]="isMenuOpen()">
@@ -89,46 +94,24 @@
         <div class="mobile-selectors">
           <div class="selector-label">Idioma</div>
           <div class="mobile-group">
-            <button
-              [class.active]="languageService.currentLanguage() === Lang.PT"
-              (click)="changeLanguage(Lang.PT)"
-            >
-              🇧🇷
-            </button>
-            <button
-              [class.active]="languageService.currentLanguage() === Lang.EN"
-              (click)="changeLanguage(Lang.EN)"
-            >
-              🇺🇸
-            </button>
-            <button
-              [class.active]="languageService.currentLanguage() === Lang.ES"
-              (click)="changeLanguage(Lang.ES)"
-            >
-              🇪🇸
-            </button>
+            @for (lang of Object.values(Lang); track lang.code) {
+              <button
+                [class.active]="languageService.currentLanguage() === lang.code"
+                (click)="changeLanguage(lang.code)"
+                (click)="toggleMenu()"
+              >
+                {{ lang.icon }}
+              </button>
+            }
           </div>
 
           <div class="selector-label">Tema</div>
           <div class="mobile-group">
-            <button
-              [class.active]="themeService.currentTheme() === Theme.LIGHT"
-              (click)="setTheme(Theme.LIGHT)"
-            >
-              ☀️
-            </button>
-            <button
-              [class.active]="themeService.currentTheme() === Theme.DARK"
-              (click)="setTheme(Theme.DARK)"
-            >
-              🌙
-            </button>
-            <button
-              [class.active]="themeService.currentTheme() === Theme.NEUTRAL"
-              (click)="setTheme(Theme.NEUTRAL)"
-            >
-              🩶
-            </button>
+            @for (t of [Theme.LIGHT, Theme.DARK, Theme.NEUTRAL]; track t) {
+              <button [class.active]="themeService.currentTheme() === t" (click)="setTheme(t)">
+                {{ t === Theme.LIGHT ? '☀️' : t === Theme.DARK ? '🌙' : '🩶' }}
+              </button>
+            }
           </div>
         </div>
       </nav>
