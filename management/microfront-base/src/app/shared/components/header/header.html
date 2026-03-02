@@ -13,64 +13,55 @@
           <li class="nav-item">
             <a href="#" class="nav-link">{{ 'HEADER.LOGIN' | translate }}</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">{{ 'HEADER.PRODUCTS' | translate }}</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">{{ 'HEADER.ABOUT' | translate }}</a>
-          </li>
+          </li> -->
         </ul>
       </nav>
 
       <div class="header-actions">
-        <div class="selectors-group">
-          <!-- Language Selector -->
-          <div class="selector dropdown">
-            <button class="selector-btn">
-              <span>
-                @if (languageService.currentLanguage() === Lang.PT.code) {
-                  {{ Lang.PT.icon }}
-                } @else if (languageService.currentLanguage() === Lang.EN.code) {
-                  {{ Lang.EN.icon }}
-                } @else if (languageService.currentLanguage() === Lang.ES.code) {
-                  {{ Lang.ES.icon }}
+        <a href="#" class="nav-link btn-contact">{{ 'HEADER.CONTACT' | translate }}</a>
+        <div class="selector dropdown settings-dropdown">
+          <button class="selector-btn">
+            <span>⚙️</span>
+          </button>
+          <div class="dropdown-content">
+            <div class="dropdown-section">
+              <span class="section-label">{{ 'HEADER.LANG' | translate }}</span>
+              <div class="options-grid">
+                @for (lang of Object.values(Lang); track lang.code) {
+                  <button
+                    [class.active]="languageService.currentLanguage() === lang.code"
+                    (click)="changeLanguage(lang.code)"
+                    [title]="lang.name"
+                  >
+                    {{ lang.icon }}
+                  </button>
                 }
-              </span>
-            </button>
-            <div class="dropdown-content">
-              @for (lang of Object.values(Lang); track lang.code) {
-                <button
-                  [class.active]="languageService.currentLanguage() === lang.code"
-                  (click)="changeLanguage(lang.code)"
-                >
-                  {{ lang.icon }} {{ lang.name }}
-                </button>
-              }
+              </div>
             </div>
-          </div>
 
-          <!-- Theme Selector -->
-          <div class="selector dropdown">
-            <button class="selector-btn">
-              <span>{{
-                themeService.currentTheme() === Theme.LIGHT
-                  ? '☀️'
-                  : themeService.currentTheme() === Theme.DARK
-                    ? '🌙'
-                    : '🩶'
-              }}</span>
-            </button>
-            <div class="dropdown-content">
-              @for (t of [Theme.LIGHT, Theme.DARK, Theme.NEUTRAL]; track t) {
-                <button [class.active]="themeService.currentTheme() === t" (click)="setTheme(t)">
-                  {{ t === Theme.LIGHT ? '☀️ Light' : t === Theme.DARK ? '🌙 Dark' : '🩶 Neutral' }}
-                </button>
-              }
+            <div class="divider"></div>
+
+            <div class="dropdown-section">
+              <span class="section-label">{{ 'HEADER.THEME' | translate }}</span>
+              <div class="options-grid">
+                @for (t of [Theme.LIGHT, Theme.DARK, Theme.NEUTRAL]; track t) {
+                  <button
+                    [class.active]="themeService.currentTheme() === t"
+                    (click)="setTheme(t)"
+                    [title]="t"
+                  >
+                    {{ t === Theme.LIGHT ? '☀️' : t === Theme.DARK ? '🌙' : '🩶' }}
+                  </button>
+                }
+              </div>
             </div>
           </div>
         </div>
-
-        <a href="#" class="nav-link btn-contact">{{ 'HEADER.CONTACT' | translate }}</a>
       </div>
     </div>
 

@@ -154,7 +154,7 @@
   position: relative;
 
   .selector-btn {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     border: 0.0625rem solid var(--border-color);
     border-radius: $border-radius-md;
     padding: $spacing-sm $spacing-md;
@@ -187,15 +187,67 @@
     border: 0.0625rem solid var(--border-color);
     border-radius: $border-radius-md;
     box-shadow: $shadow-lg;
-    min-width: 10rem;
+    min-width: 12rem;
     opacity: 0;
     visibility: hidden;
     transform: translateY(0.625rem);
     transition: all $transition-default;
     z-index: 1100;
     overflow: hidden;
+    padding: $spacing-sm;
 
-    button {
+    .dropdown-section {
+      padding: $spacing-xs;
+
+      .section-label {
+        display: block;
+        font-size: $font-size-xss;
+        font-weight: $font-weight-bold;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+        margin-bottom: $spacing-sm;
+        padding-left: $spacing-xs;
+      }
+
+      .options-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-xs;
+
+        button {
+          width: 100%;
+          aspect-ratio: 1;
+          padding: 0;
+          cursor: pointer;
+          @include flex-center;
+          border-radius: $border-radius-sm;
+          font-size: $font-size-lg;
+          background: var(--bg-secondary);
+          border: 1px solid transparent;
+
+          &:hover {
+            background: var(--border-color);
+            color: var(--accent);
+          }
+
+          &.active {
+            background: var(--accent);
+            color: $white;
+            box-shadow: $shadow-sm;
+          }
+        }
+      }
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: $spacing-sm 0;
+    }
+
+    // Support for legacy list-style buttons if needed
+    > button {
       width: 100%;
       padding: $spacing-md;
       border: none;
