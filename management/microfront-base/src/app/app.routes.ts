@@ -34,11 +34,17 @@ export const routes: Routes = [
         exposedModule: './routes',
       }).then((m) => m.routes),
   },
-
-  { path: InternalRoutes.HOME, component: Home },
+  {
+    path: InternalRoutes.LOGIN,
+    loadComponent: () => import('./features/login/login').then((m) => m.Login),
+  },
+  {
+    path: InternalRoutes.HOME,
+    loadComponent: () => import('./features/home/home').then((m) => m.Home),
+  },
   {
     path: InternalRoutes.ERROR,
-    component: Error,
+    loadComponent: () => import('./shared/components/error/error').then((m) => m.Error),
   },
   { path: '', redirectTo: InternalRoutes.HOME, pathMatch: 'full' },
   {
