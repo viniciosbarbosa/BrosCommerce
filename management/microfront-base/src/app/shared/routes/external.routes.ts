@@ -1,5 +1,5 @@
 export enum ExternalRoutes {
-  INFO = '/info',
-  REPORT = '/report',
-  USERS = '/users',
+  PRODUCT_CATEGORY = 'product-category',
+  REPORT = 'report',
+  USERS = 'users',
 }

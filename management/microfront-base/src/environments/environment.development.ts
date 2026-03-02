@@ -5,7 +5,7 @@ export const environment = {
   defaultLang: 'en',
   theme: 'theme-dark',
   remotes: {
-    info: 'http://localhost:4201/remoteEntry.js',
+    productCategory: 'http://localhost:4201/remoteEntry.js',
     report: 'http://localhost:4202/remoteEntry.js',
     users: 'http://localhost:4203/remoteEntry.js',
   },

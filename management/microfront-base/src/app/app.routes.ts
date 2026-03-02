@@ -2,13 +2,14 @@ import { Routes } from '@angular/router';
 import { Home } from './features/home/home';
 import { loadRemoteModule } from '@angular-architects/module-federation';
 import { environment } from '../environments/environment.development';
+import { InternalRoutes } from './shared/routes/internal.routes';
 export const routes: Routes = [
   {
-    path: 'info',
+    path: 'product-category',
     loadChildren: () =>
       loadRemoteModule({
         type: 'module',
-        remoteEntry: environment.remotes.info,
+        remoteEntry: environment.remotes.productCategory,
         exposedModule: './routes',
       }).then((m) => m.routes),
   },
@@ -19,7 +20,7 @@ export const routes: Routes = [
         type: 'module',
         remoteEntry: environment.remotes.report,
         exposedModule: './routes',
-      }).then((m) => m.Component),
+      }).then((m) => m.routes),
   },
   {
     path: 'users',
@@ -31,6 +32,6 @@ export const routes: Routes = [
       }).then((m) => m.routes),
   },
 
-  { path: 'home', component: Home },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: InternalRoutes.HOME, component: Home },
+  { path: '', redirectTo: InternalRoutes.HOME, pathMatch: 'full' },
 ];
