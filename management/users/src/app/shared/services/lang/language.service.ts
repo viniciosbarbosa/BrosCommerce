@@ -1,16 +1,18 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Lang } from '../../enum/lang/lang.enum';
 import { TranslateService } from '@ngx-translate/core';
-import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LanguageService {
   private translate = inject(TranslateService);
-  currentLanguage = signal(environment.defaultLang);
+
   setLanguage(language: Lang) {
     this.translate.use(language);
-    this.currentLanguage.set(language);
+  }
+
+  getCurrentLanguage(): Lang {
+    return this.translate.currentLang as Lang;
   }
 }

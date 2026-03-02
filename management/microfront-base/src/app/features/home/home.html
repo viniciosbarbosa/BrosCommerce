@@ -1,21 +1,9 @@
 <div class="home">
   <nav>
-    <a routerLink="/info">Info</a>
-    <a routerLink="/report">Report</a>
-    <a routerLink="/users">Users</a>
+    <a routerLink="{{ ExternalRoutes.INFO }}">Info</a>
+    <a routerLink="{{ ExternalRoutes.REPORT }}">Report</a>
+    <a routerLink="{{ ExternalRoutes.USERS }}">Users</a>
   </nav>
 
   <h1>{{ 'HELLO' | translate }}</h1>
-
-  <div class="group">
-    <button (click)="changeLanguage(Lang.PT)">🇧🇷 PT</button>
-    <button (click)="changeLanguage(Lang.EN)">🇺🇸 EN</button>
-    <button (click)="changeLanguage(Lang.ES)">🇪🇸 ES</button>
-  </div>
-
-  <div class="group">
-    <button (click)="setTheme(Theme.LIGHT)">☀️ Claro</button>
-    <button (click)="setTheme(Theme.DARK)">🌙 Escuro</button>
-    <button (click)="setTheme(Theme.NEUTRAL)">🩶 Cinza</button>
-  </div>
 </div>

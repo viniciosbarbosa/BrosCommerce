@@ -1,0 +1,137 @@
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-wrapper">
+      <a href="/" class="logo">
+        <span class="logo-text">Bros</span><span class="logo-highlight">Commerce</span>
+      </a>
+    </div>
+
+    <nav class="nav-menu desktop-only">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#" class="nav-link">Início</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Produtos</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Sobre nós</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions desktop-only">
+      <div class="selectors-group">
+        <div class="selector dropdown">
+          <button class="selector-btn">
+            <span>{{
+              languageService.currentLanguage() === Lang.PT
+                ? '🇧🇷'
+                : languageService.currentLanguage() === Lang.EN
+                  ? '🇺🇸'
+                  : '🇪🇸'
+            }}</span>
+          </button>
+          <div class="dropdown-content">
+            <button
+              [class.active]="languageService.currentLanguage() === Lang.PT"
+              (click)="changeLanguage(Lang.PT)"
+            >
+              🇧🇷 Português
+            </button>
+            <button
+              [class.active]="languageService.currentLanguage() === Lang.EN"
+              (click)="changeLanguage(Lang.EN)"
+            >
+              🇺🇸 English
+            </button>
+            <button
+              [class.active]="languageService.currentLanguage() === Lang.ES"
+              (click)="changeLanguage(Lang.ES)"
+            >
+              🇪🇸 Español
+            </button>
+          </div>
+        </div>
+
+        <div class="selector dropdown">
+          <button class="selector-btn">
+            <span>{{
+              themeService.currentTheme() === Theme.LIGHT
+                ? '☀️'
+                : themeService.currentTheme() === Theme.DARK
+                  ? '🌙'
+                  : '🩶'
+            }}</span>
+          </button>
+          <div class="dropdown-content">
+            <button (click)="setTheme(Theme.LIGHT)">☀️ Light</button>
+            <button (click)="setTheme(Theme.DARK)">🌙 Dark</button>
+            <button (click)="setTheme(Theme.NEUTRAL)">🩶 Neutral</button>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="nav-link btn-contact">Contato</a>
+    </div>
+
+    <button class="burger-btn mobile-only" (click)="toggleMenu()" [class.active]="isMenuOpen()">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </button>
+  </div>
+
+  @if (isMenuOpen()) {
+    <div class="mobile-menu open">
+      <nav class="mobile-nav">
+        <ul class="mobile-nav-list">
+          <li><a href="#" (click)="toggleMenu()">Início</a></li>
+          <li><a href="#" (click)="toggleMenu()">Produtos</a></li>
+          <li><a href="#" (click)="toggleMenu()">Sobre nós</a></li>
+          <li><a href="#" class="btn-contact" (click)="toggleMenu()">Contato</a></li>
+        </ul>
+
+        <div class="mobile-selectors">
+          <div class="selector-label">Idioma</div>
+          <div class="mobile-group">
+            <button
+              [class.active]="languageService.currentLanguage() === Lang.PT"
+              (click)="changeLanguage(Lang.PT)"
+            >
+              🇧🇷
+            </button>
+            <button
+              [class.active]="languageService.currentLanguage() === Lang.EN"
+              (click)="changeLanguage(Lang.EN)"
+            >
+              🇺🇸
+            </button>
+            <button
+              [class.active]="languageService.currentLanguage() === Lang.ES"
+              (click)="changeLanguage(Lang.ES)"
+            >
+              🇪🇸
+            </button>
+          </div>
+
+          <div class="selector-label">Tema</div>
+          <div class="mobile-group">
+            <button
+              [class.active]="themeService.currentTheme() === Theme.LIGHT"
+              (click)="setTheme(Theme.LIGHT)"
+            >
+              ☀️
+            </button>
+            <button
+              [class.active]="themeService.currentTheme() === Theme.DARK"
+              (click)="setTheme(Theme.DARK)"
+            >
+              🌙
+            </button>
+            <button
+              [class.active]="themeService.currentTheme() === Theme.NEUTRAL"
+              (click)="setTheme(Theme.NEUTRAL)"
+            >
+              🩶
+            </button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  }
+</header>

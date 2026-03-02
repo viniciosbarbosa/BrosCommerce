@@ -22,12 +22,12 @@ export const routes: Routes = [
   },
   {
     path: 'users',
-    loadComponent: () =>
+    loadChildren: () =>
       loadRemoteModule({
         type: 'module',
         remoteEntry: 'http://localhost:4203/remoteEntry.js',
-        exposedModule: './Component',
-      }).then((m) => m.Component),
+        exposedModule: './routes',
+      }).then((m) => m.routes),
   },
 
   { path: 'home', component: Home },
