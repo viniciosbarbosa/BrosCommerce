@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ThemeService } from '../../services/theme/theme.service';
 import { LanguageService } from '../../services/lang/language.service';
 import { Theme } from '../../enum/theme/theme.enum';
-import { Lang } from '../../interfaces/lang';
+import { Lang } from '../../interfaces/lang/lang';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 

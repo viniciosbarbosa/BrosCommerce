@@ -1,7 +1,24 @@
 {
-  "LOGIN": "Login",
-  "PRODUCTS": "Produtos",
-  "ABOUT": "Sobre nós",
-  "CONTACT": "Contato",
-  "TEST": "Teste"
+  "HEADER": {
+    "LOGIN": "Login",
+    "PRODUCTS": "Produtos",
+    "ABOUT": "Sobre nós",
+    "CONTACT": "Contato",
+    "THEME": "Tema",
+    "LANG": "Idioma"
+  },
+  "TEST": "Teste",
+  "ERROR": {
+    "404_TITLE": "Página não encontrada",
+    "404_MESSAGE": "A página que você procura não existe ou foi movida.",
+    "401_TITLE": "Não autorizado",
+    "401_MESSAGE": "Você precisa estar logado para acessar esta página.",
+    "403_TITLE": "Acesso negado",
+    "403_MESSAGE": "Você não tem permissão para acessar esta página.",
+    "500_TITLE": "Erro interno",
+    "500_MESSAGE": "Algo deu errado. Tente novamente mais tarde.",
+    "GENERIC_TITLE": "Erro inesperado",
+    "GENERIC_MESSAGE": "Ocorreu um erro inesperado.",
+    "BACK_HOME": "Home"
+  }
 }

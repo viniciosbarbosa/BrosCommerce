@@ -1,4 +1,4 @@
-<header class="main-header">
+<header class="main-header" [class.menu-open]="isMenuOpen()">
   <div class="header-container">
     <div class="logo-wrapper">
       <a href="/" class="logo">
@@ -11,13 +11,13 @@
       <nav class="nav-menu">
         <ul class="nav-list">
           <li class="nav-item">
-            <a href="#" class="nav-link">{{ 'LOGIN' | translate }}</a>
+            <a href="#" class="nav-link">{{ 'HEADER.LOGIN' | translate }}</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">{{ 'PRODUCTS' | translate }}</a>
+            <a href="#" class="nav-link">{{ 'HEADER.PRODUCTS' | translate }}</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">{{ 'ABOUT' | translate }}</a>
+            <a href="#" class="nav-link">{{ 'HEADER.ABOUT' | translate }}</a>
           </li>
         </ul>
       </nav>
@@ -70,7 +70,7 @@
           </div>
         </div>
 
-        <a href="#" class="nav-link btn-contact">{{ 'CONTACT' | translate }}</a>
+        <a href="#" class="nav-link btn-contact">{{ 'HEADER.CONTACT' | translate }}</a>
       </div>
     </div>
 
@@ -80,41 +80,50 @@
       <span class="line"></span>
     </button>
   </div>
-
-  @if (isMenuOpen()) {
-    <div class="mobile-menu open">
-      <nav class="mobile-nav">
-        <ul class="mobile-nav-list">
-          <li><a href="#" (click)="toggleMenu()">Início</a></li>
-          <li><a href="#" (click)="toggleMenu()">Produtos</a></li>
-          <li><a href="#" (click)="toggleMenu()">Sobre nós</a></li>
-          <li><a href="#" class="btn-contact" (click)="toggleMenu()">Contato</a></li>
-        </ul>
-
-        <div class="mobile-selectors">
-          <div class="selector-label">Idioma</div>
-          <div class="mobile-group">
-            @for (lang of Object.values(Lang); track lang.code) {
-              <button
-                [class.active]="languageService.currentLanguage() === lang.code"
-                (click)="changeLanguage(lang.code)"
-                (click)="toggleMenu()"
-              >
-                {{ lang.icon }}
-              </button>
-            }
-          </div>
-
-          <div class="selector-label">Tema</div>
-          <div class="mobile-group">
-            @for (t of [Theme.LIGHT, Theme.DARK, Theme.NEUTRAL]; track t) {
-              <button [class.active]="themeService.currentTheme() === t" (click)="setTheme(t)">
-                {{ t === Theme.LIGHT ? '☀️' : t === Theme.DARK ? '🌙' : '🩶' }}
-              </button>
-            }
-          </div>
-        </div>
-      </nav>
-    </div>
-  }
 </header>
+
+@if (isMenuOpen()) {
+  <div class="mobile-menu open">
+    <nav class="mobile-nav">
+      <ul class="mobile-nav-list">
+        <li>
+          <a href="#" (click)="toggleMenu()">{{ 'HEADER.LOGIN' | translate }}</a>
+        </li>
+        <li>
+          <a href="#" (click)="toggleMenu()">{{ 'HEADER.PRODUCTS' | translate }}</a>
+        </li>
+        <li>
+          <a href="#" (click)="toggleMenu()">{{ 'HEADER.ABOUT' | translate }}</a>
+        </li>
+        <li>
+          <a href="#" class="btn-contact" (click)="toggleMenu()">{{
+            'HEADER.CONTACT' | translate
+          }}</a>
+        </li>
+      </ul>
+
+      <div class="mobile-selectors">
+        <div class="selector-label">{{ 'HEADER.LANG' | translate }}</div>
+        <div class="mobile-group">
+          @for (lang of Object.values(Lang); track lang.code) {
+            <button
+              [class.active]="languageService.currentLanguage() === lang.code"
+              (click)="changeLanguage(lang.code)"
+            >
+              {{ lang.icon }}
+            </button>
+          }
+        </div>
+
+        <div class="selector-label">{{ 'HEADER.THEME' | translate }}</div>
+        <div class="mobile-group">
+          @for (t of [Theme.LIGHT, Theme.DARK, Theme.NEUTRAL]; track t) {
+            <button [class.active]="themeService.currentTheme() === t" (click)="setTheme(t)">
+              {{ t === Theme.LIGHT ? '☀️' : t === Theme.DARK ? '🌙' : '🩶' }}
+            </button>
+          }
+        </div>
+      </div>
+    </nav>
+  </div>
+}

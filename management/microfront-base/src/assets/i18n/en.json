@@ -1,7 +1,24 @@
 {
-  "LOGIN": "Login",
-  "PRODUCTS": "Products",
-  "ABOUT": "About us",
-  "CONTACT": "Contact",
-  "TEST": "Test"
+  "HEADER": {
+    "LOGIN": "Login",
+    "PRODUCTS": "Products",
+    "ABOUT": "About us",
+    "CONTACT": "Contact",
+    "THEME": "Theme",
+    "LANG": "Languague"
+  },
+  "TEST": "Test",
+  "ERROR": {
+    "404_TITLE": "Page not found",
+    "404_MESSAGE": "The page you are looking for does not exist or has been moved.",
+    "401_TITLE": "Unauthorized",
+    "401_MESSAGE": "You need to be logged in to access this page.",
+    "403_TITLE": "Access denied",
+    "403_MESSAGE": "You do not have permission to access this page.",
+    "500_TITLE": "Internal error",
+    "500_MESSAGE": "Something went wrong. Please try again later.",
+    "GENERIC_TITLE": "Unexpected error",
+    "GENERIC_MESSAGE": "An unexpected error occurred.",
+    "BACK_HOME": "Home"
+  }
 }

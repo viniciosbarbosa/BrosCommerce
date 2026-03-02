@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Lang } from '../../interfaces/lang';
+import { Lang } from '../../interfaces/lang/lang';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
 
