@@ -1,9 +1,9 @@
 {
   "HEADER": {
     "LOGIN": "Login",
+    "PROFILE": "Profile",
     "PRODUCTS": "Products",
     "ABOUT": "About us",
-    "CONTACT": "Contact",
     "THEME": "Theme",
     "LANG": "Languague"
   },

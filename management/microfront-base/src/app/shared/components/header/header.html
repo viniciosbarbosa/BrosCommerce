@@ -20,13 +20,27 @@
       <div class="header-actions">
         <div class="selector dropdown profile-dropdown">
           <button class="selector-btn">
-            <mat-icon class="settings-icon">person</mat-icon>
+            <mat-icon class="header-icon">person</mat-icon>
+
+            <div class="dropdown-content">
+              <div class="dropdown-section">
+                <span class="section-label">{{ 'HEADER.PROFILE' | translate }}</span>
+                <div class="options-list">
+                  <span>1</span>
+                  <div class="divider"></div>
+                  <span>2</span>
+                  <div class="divider"></div>
+                  <span>3</span>
+                  <div class="divider"></div>
+                </div>
+              </div>
+            </div>
           </button>
         </div>
 
         <div class="selector dropdown settings-dropdown">
           <button class="selector-btn">
-            <mat-icon class="settings-icon">settings</mat-icon>
+            <mat-icon class="header-icon">settings</mat-icon>
           </button>
           <div class="dropdown-content">
             <div class="dropdown-section">

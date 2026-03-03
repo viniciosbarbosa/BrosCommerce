@@ -165,12 +165,12 @@
       background: var(--accent-hover);
       border-color: none;
       cursor: pointer;
-      .settings-icon {
+      .header-icon {
         color: $white;
       }
     }
 
-    .settings-icon {
+    .header-icon {
       color: var(--accent);
       transition: color $transition-default;
     }
@@ -206,6 +206,7 @@
       padding: $spacing-xs;
 
       .section-label {
+        text-align: left;
         display: block;
         font-size: $font-size-xss;
         font-weight: $font-weight-bold;
@@ -219,6 +220,42 @@
       .options-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-xs;
+
+        button {
+          width: 100%;
+          aspect-ratio: 1;
+          padding: 0;
+          cursor: pointer;
+          @include flex-center;
+          border-radius: $border-radius-sm;
+          font-size: $font-size-lg;
+          background: var(--bg-secondary);
+          border: 1px solid transparent;
+
+          &:hover {
+            background: var(--border-color);
+            color: var(--accent);
+          }
+
+          &.active {
+            background: var(--accent);
+            color: $white;
+            box-shadow: $shadow-sm;
+          }
+
+          mat-icon {
+            @include flex-center;
+            width: 1.5rem;
+            height: 1.125rem;
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .options-list {
+        display: flex;
+        flex-direction: column;
         gap: $spacing-xs;
 
         button {
