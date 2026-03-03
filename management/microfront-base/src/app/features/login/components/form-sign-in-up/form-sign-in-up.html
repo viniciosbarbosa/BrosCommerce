@@ -27,7 +27,7 @@
           {{ 'LOGIN.KEEP_ME_LOGGED' | translate }}
         </mat-checkbox>
 
-        <button type="button" class="btn-forgot" (click)="nextStep(LoginViewState.FORGOT_PASSWORD)">
+        <button type="button" class="btn-forgot">
           {{ 'LOGIN.FORGOT_PASSWORD' | translate }}
         </button>
       </div>
@@ -56,9 +56,9 @@
           {{ 'TWO_FACTOR.NEXT' | translate }}
         </button>
 
-        <button type="button" class="btn-back" (click)="nextStep(LoginViewState.LOGIN)">
+        <!-- <button type="button" class="btn-back">
           {{ 'TWO_FACTOR.BACK_TO_LOGIN' | translate }}
-        </button>
+        </button> -->
       </div>
     </form>
   }
@@ -78,7 +78,7 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>{{ 'TWO_FACTOR.CODE_LABEL' | translate }}</mat-label>
-        <input matInput formControlName="code" mask="000 000" placeholder="000 000" />
+        <input matInput formControlName="code" mask="000-000" placeholder="000-000" />
         @if (twoFactorAuthForm.get('code')?.hasError('required')) {
           <mat-error>{{ 'TWO_FACTOR.ERROR_CODE_REQUIRED' | translate }}</mat-error>
         }
@@ -87,10 +87,6 @@
       <div class="recovery-actions">
         <button type="submit" class="btn-submit" [disabled]="twoFactorAuthForm.invalid">
           {{ 'TWO_FACTOR.SUBMIT' | translate }}
-        </button>
-
-        <button type="button" class="btn-back" (click)="nextStep(LoginViewState.LOGIN)">
-          {{ 'TWO_FACTOR.BACK_TO_LOGIN' | translate }}
         </button>
       </div>
     </form>
@@ -117,7 +113,7 @@
           {{ 'LOGIN.SEND' | translate }}
         </button>
 
-        <button type="button" class="btn-back" (click)="nextStep(LoginViewState.LOGIN)">
+        <button type="button" class="btn-back">
           {{ 'LOGIN.BACK_TO_LOGIN' | translate }}
         </button>
       </div>
@@ -127,13 +123,17 @@
   @if (viewState() === LoginViewState.RECOVERY_SUCCESS) {
     <div class="success-view">
       <div class="success-icon">
-        <mat-icon>check_circle</mat-icon>
+        <mat-icon>check_circle_outline</mat-icon>
       </div>
       <h2 class="form-title">{{ 'LOGIN.RECOVER_SUCCESS' | translate }}</h2>
 
-      <button type="button" class="btn-submit" (click)="nextStep(LoginViewState.LOGIN)">
+      <button type="button" class="btn-submit">
         {{ 'LOGIN.BACK_TO_LOGIN' | translate }}
       </button>
     </div>
   }
 </div>
+
+@if (loading()) {
+  <app-loading></app-loading>
+}

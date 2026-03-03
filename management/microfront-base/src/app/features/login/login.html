@@ -1,8 +1,11 @@
 <div class="container">
   <div class="form-container">
     <app-form-sign-in-up
+      [viewState]="viewState()"
+      [loading]="loading()"
+      [errorMessage]="errorMessage()"
       (twoFactorAuthEmit)="handleTwoFactorAuthSuccess($event)"
-      (loginEmit)="handleLoginSuccess($event)"
+      (loginEmit)="handleLogin($event)"
       (passwordRecoveryEmit)="handlePasswordRecovery($event)"
     ></app-form-sign-in-up>
   </div>

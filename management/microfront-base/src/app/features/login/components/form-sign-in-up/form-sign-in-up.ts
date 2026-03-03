@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { NgxMaskDirective } from 'ngx-mask';
 import { LoginViewState } from '../../models/login-view-state.enum';
 import { LoginRequest } from '../../models/request/login.request';
+import { Loading } from '../../../../shared/components/loading/loading';
 
 @Component({
   selector: 'app-form-sign-in-up',
@@ -18,6 +19,7 @@ import { LoginRequest } from '../../models/request/login.request';
     CommonModule,
     ReactiveFormsModule,
     NgxMaskDirective,
+    Loading,
   ],
   templateUrl: './form-sign-in-up.html',
   styleUrl: './form-sign-in-up.scss',
@@ -26,13 +28,13 @@ export class FormSignInUp {
   private fb = inject(NonNullableFormBuilder);
   protected readonly LoginViewState = LoginViewState;
 
-  initialEmail = input<string>('');
-
+  viewState = input<LoginViewState>(LoginViewState.SELECT_2_FACTOR_METHOD);
+  teste = signal<LoginViewState>(LoginViewState.SELECT_2_FACTOR_METHOD);
+  loading = input<boolean>(false);
+  errorMessage = input<string | null>(null);
   loginEmit = output<LoginRequest>();
   twoFactorAuthEmit = output<string>();
   passwordRecoveryEmit = output<string>();
-
-  viewState = signal<LoginViewState>(LoginViewState.LOGIN);
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -82,23 +84,24 @@ export class FormSignInUp {
     this.loginEmit.emit(params);
   }
 
-  public nextStep(viewState: LoginViewState) {
-    switch (this.viewState()) {
-      case LoginViewState.LOGIN:
-        this.viewState.set(LoginViewState.SELECT_2_FACTOR_METHOD);
-        break;
-      case LoginViewState.SELECT_2_FACTOR_METHOD:
-        this.viewState.set(LoginViewState.TWO_FACTOR);
-        break;
-      case LoginViewState.TWO_FACTOR:
-        this.viewState.set(LoginViewState.LOGIN);
-        break;
-    }
-  }
+  // public nextStep(viewState: LoginViewState) {
+  //   switch (this.viewState()) {
+  //     case LoginViewState.LOGIN:
+  //       this.viewState.set(LoginViewState.SELECT_2_FACTOR_METHOD);
+  //       break;
+  //     case LoginViewState.SELECT_2_FACTOR_METHOD:
+  //       this.viewState.set(LoginViewState.TWO_FACTOR);
+  //       break;
+  //     case LoginViewState.TWO_FACTOR:
+  //       this.viewState.set(LoginViewState.LOGIN);
+  //       break;
+  //   }
+  // }
 
   private handleMethodSelection() {
     if (this.methodForm.invalid) return;
-    this.viewState.set(LoginViewState.TWO_FACTOR);
+
+    this.twoFactorAuthEmit.emit(this.methodForm.getRawValue().method);
   }
 
   private handleRecovery() {
