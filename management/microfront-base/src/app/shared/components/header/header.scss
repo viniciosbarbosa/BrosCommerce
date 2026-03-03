@@ -147,7 +147,6 @@
   }
 }
 
-// Selectors Refinement
 .selector {
   position: relative;
 
@@ -163,8 +162,17 @@
     min-width: 3rem;
 
     &:hover {
-      background: var(--border-color);
-      border-color: var(--text-secondary);
+      background: var(--accent-hover);
+      border-color: none;
+      cursor: pointer;
+      .settings-icon {
+        color: $white;
+      }
+    }
+
+    .settings-icon {
+      color: var(--accent);
+      transition: color $transition-default;
     }
   }
 
@@ -233,6 +241,13 @@
             background: var(--accent);
             color: $white;
             box-shadow: $shadow-sm;
+          }
+
+          mat-icon {
+            @include flex-center;
+            width: 1.5rem;
+            height: 1.125rem;
+            font-size: 1.5rem;
           }
         }
       }
@@ -316,6 +331,12 @@
   transform: translateX(100%);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
+  .dja {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &.open {
     transform: translateX(0);
   }
@@ -384,6 +405,12 @@
           background: var(--accent);
           color: $white;
           border-color: var(--accent);
+        }
+
+        mat-icon {
+          @include flex-center;
+          width: 1.5rem;
+          height: 1.125rem;
         }
       }
     }

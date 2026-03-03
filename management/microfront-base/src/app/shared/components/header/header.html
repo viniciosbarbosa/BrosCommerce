@@ -6,7 +6,6 @@
       </a>
     </div>
 
-    <!-- Navigation and Actions aligned to the right -->
     <div class="header-right desktop-only">
       <nav class="nav-menu">
         <ul class="nav-list">
@@ -15,21 +14,19 @@
               'HEADER.LOGIN' | translate
             }}</a>
           </li>
-
-          <!-- <li class="nav-item">
-            <a href="#" class="nav-link">{{ 'HEADER.PRODUCTS' | translate }}</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">{{ 'HEADER.ABOUT' | translate }}</a>
-          </li> -->
         </ul>
       </nav>
 
       <div class="header-actions">
-        <a href="#" class="nav-link btn-contact">{{ 'HEADER.CONTACT' | translate }}</a>
+        <div class="selector dropdown profile-dropdown">
+          <button class="selector-btn">
+            <mat-icon class="settings-icon">person</mat-icon>
+          </button>
+        </div>
+
         <div class="selector dropdown settings-dropdown">
           <button class="selector-btn">
-            <span>⚙️</span>
+            <mat-icon class="settings-icon">settings</mat-icon>
           </button>
           <div class="dropdown-content">
             <div class="dropdown-section">
@@ -41,7 +38,7 @@
                     (click)="changeLanguage(lang.code)"
                     [title]="lang.name"
                   >
-                    {{ lang.icon }}
+                    <mat-icon [svgIcon]="lang.icon"></mat-icon>
                   </button>
                 }
               </div>
@@ -58,7 +55,7 @@
                     (click)="setTheme(t)"
                     [title]="t"
                   >
-                    {{ t === Theme.LIGHT ? '☀️' : t === Theme.DARK ? '🌙' : '🩶' }}
+                    <mat-icon>{{ ThemeIcons[t] }}</mat-icon>
                   </button>
                 }
               </div>
@@ -101,10 +98,11 @@
         <div class="mobile-group">
           @for (lang of Object.values(Lang); track lang.code) {
             <button
+              class="dja"
               [class.active]="languageService.currentLanguage() === lang.code"
               (click)="changeLanguage(lang.code)"
             >
-              {{ lang.icon }}
+              <mat-icon [svgIcon]="lang.icon"></mat-icon>
             </button>
           }
         </div>
@@ -112,8 +110,12 @@
         <div class="selector-label">{{ 'HEADER.THEME' | translate }}</div>
         <div class="mobile-group">
           @for (t of [Theme.LIGHT, Theme.DARK, Theme.NEUTRAL]; track t) {
-            <button [class.active]="themeService.currentTheme() === t" (click)="setTheme(t)">
-              {{ t === Theme.LIGHT ? '☀️' : t === Theme.DARK ? '🌙' : '🩶' }}
+            <button
+              class="dja"
+              [class.active]="themeService.currentTheme() === t"
+              (click)="setTheme(t)"
+            >
+              <mat-icon>{{ ThemeIcons[t] }}</mat-icon>
             </button>
           }
         </div>
