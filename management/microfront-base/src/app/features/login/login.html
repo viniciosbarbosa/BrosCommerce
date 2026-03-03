@@ -4,9 +4,11 @@
       [viewState]="viewState()"
       [loading]="loading()"
       [errorMessage]="errorMessage()"
-      (twoFactorAuthEmit)="handleTwoFactorAuthSuccess($event)"
+      (twoFactorAuthEmit)="handleTwoFactorEmit($event)"
       (loginEmit)="handleLogin($event)"
       (passwordRecoveryEmit)="handlePasswordRecovery($event)"
+      (viewStateChange)="handleViewStateChange($event)"
+      (backToLogin)="handleBackToLogin()"
     ></app-form-sign-in-up>
   </div>
 </div>

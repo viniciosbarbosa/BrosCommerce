@@ -1,4 +1,7 @@
 <div class="form-wrapper">
+  @if (loading()) {
+    <app-loading></app-loading>
+  }
   @if (viewState() === LoginViewState.LOGIN) {
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <h2 class="form-title">{{ 'LOGIN.SIGN_IN' | translate }}</h2>
@@ -16,7 +19,22 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>{{ 'LOGIN.PASSWORD' | translate }}</mat-label>
-        <input matInput type="password" formControlName="password" placeholder="••••••" />
+        <input
+          matInput
+          [type]="hidePassword() ? 'password' : 'text'"
+          formControlName="password"
+          placeholder="••••••"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hidePassword.set(!hidePassword())"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hidePassword()"
+          type="button"
+        >
+          <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
         @if (loginForm.get('password')?.hasError('required')) {
           <mat-error>{{ 'LOGIN.ERROR_PASSWORD_REQUIRED' | translate }}</mat-error>
         }
@@ -27,7 +45,7 @@
           {{ 'LOGIN.KEEP_ME_LOGGED' | translate }}
         </mat-checkbox>
 
-        <button type="button" class="btn-forgot">
+        <button type="button" class="btn-forgot" (click)="onForgotPassword()">
           {{ 'LOGIN.FORGOT_PASSWORD' | translate }}
         </button>
       </div>
@@ -113,27 +131,35 @@
           {{ 'LOGIN.SEND' | translate }}
         </button>
 
-        <button type="button" class="btn-back">
+        <button type="button" class="btn-back" (click)="onBackToLogin()">
           {{ 'LOGIN.BACK_TO_LOGIN' | translate }}
         </button>
       </div>
     </form>
   }
 
-  @if (viewState() === LoginViewState.RECOVERY_SUCCESS) {
-    <div class="success-view">
-      <div class="success-icon">
-        <mat-icon>check_circle_outline</mat-icon>
-      </div>
-      <h2 class="form-title">{{ 'LOGIN.RECOVER_SUCCESS' | translate }}</h2>
+  @if (viewState() === LoginViewState.RECOVERY_PASSWORD) {
+    <form [formGroup]="recoveryCodeForm" (ngSubmit)="onSubmit()" class="recovery-form">
+      <h2 class="form-title">{{ 'LOGIN.RECOVER_TITLE' | translate }}</h2>
+      <p class="form-description">{{ 'LOGIN.RECOVER_MESSAGE' | translate }}</p>
 
-      <button type="button" class="btn-submit">
-        {{ 'LOGIN.BACK_TO_LOGIN' | translate }}
-      </button>
-    </div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'TWO_FACTOR.CODE_LABEL' | translate }}</mat-label>
+        <input matInput formControlName="code" mask="000-000" placeholder="000-000" />
+        @if (recoveryCodeForm.get('code')?.hasError('required')) {
+          <mat-error>{{ 'TWO_FACTOR.ERROR_CODE_REQUIRED' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="recovery-actions">
+        <button type="submit" class="btn-submit" [disabled]="recoveryCodeForm.invalid">
+          {{ 'LOGIN.SEND' | translate }}
+        </button>
+
+        <button type="button" class="btn-back" (click)="onBackToLogin()">
+          {{ 'LOGIN.BACK_TO_LOGIN' | translate }}
+        </button>
+      </div>
+    </form>
   }
 </div>
-
-@if (loading()) {
-  <app-loading></app-loading>
-}

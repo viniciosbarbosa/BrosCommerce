@@ -27,14 +27,17 @@ import { Loading } from '../../../../shared/components/loading/loading';
 export class FormSignInUp {
   private fb = inject(NonNullableFormBuilder);
   protected readonly LoginViewState = LoginViewState;
+  hidePassword = signal<boolean>(true);
 
-  viewState = input<LoginViewState>(LoginViewState.SELECT_2_FACTOR_METHOD);
-  teste = signal<LoginViewState>(LoginViewState.SELECT_2_FACTOR_METHOD);
+  viewState = input<LoginViewState>();
+
   loading = input<boolean>(false);
   errorMessage = input<string | null>(null);
   loginEmit = output<LoginRequest>();
   twoFactorAuthEmit = output<string>();
   passwordRecoveryEmit = output<string>();
+  backToLogin = output<void>();
+  viewStateChange = output<LoginViewState>();
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -44,6 +47,10 @@ export class FormSignInUp {
 
   recoveryForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
+  });
+
+  recoveryCodeForm: FormGroup = this.fb.group({
+    code: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   methodForm: FormGroup = this.fb.group({
@@ -59,14 +66,17 @@ export class FormSignInUp {
       case LoginViewState.LOGIN:
         this.handleLogin();
         break;
-      case LoginViewState.FORGOT_PASSWORD:
-        this.handleRecovery();
-        break;
       case LoginViewState.SELECT_2_FACTOR_METHOD:
         this.handleMethodSelection();
         break;
       case LoginViewState.TWO_FACTOR:
         this.handleTwoFactor();
+        break;
+      case LoginViewState.FORGOT_PASSWORD:
+        this.handleRecovery();
+        break;
+      case LoginViewState.RECOVERY_PASSWORD:
+        this.handleRecoveryCode();
         break;
     }
   }
@@ -84,20 +94,6 @@ export class FormSignInUp {
     this.loginEmit.emit(params);
   }
 
-  // public nextStep(viewState: LoginViewState) {
-  //   switch (this.viewState()) {
-  //     case LoginViewState.LOGIN:
-  //       this.viewState.set(LoginViewState.SELECT_2_FACTOR_METHOD);
-  //       break;
-  //     case LoginViewState.SELECT_2_FACTOR_METHOD:
-  //       this.viewState.set(LoginViewState.TWO_FACTOR);
-  //       break;
-  //     case LoginViewState.TWO_FACTOR:
-  //       this.viewState.set(LoginViewState.LOGIN);
-  //       break;
-  //   }
-  // }
-
   private handleMethodSelection() {
     if (this.methodForm.invalid) return;
 
@@ -109,6 +105,15 @@ export class FormSignInUp {
       this.recoveryForm.markAllAsTouched();
       return;
     }
+    this.passwordRecoveryEmit.emit(this.recoveryForm.getRawValue().email);
+  }
+
+  private handleRecoveryCode() {
+    if (this.recoveryCodeForm.invalid) {
+      this.recoveryCodeForm.markAllAsTouched();
+      return;
+    }
+    this.passwordRecoveryEmit.emit(this.recoveryCodeForm.getRawValue().code);
   }
 
   private handleTwoFactor() {
@@ -116,5 +121,14 @@ export class FormSignInUp {
       this.twoFactorAuthForm.markAllAsTouched();
       return;
     }
+    this.twoFactorAuthEmit.emit(this.twoFactorAuthForm.getRawValue().code);
+  }
+
+  public onForgotPassword() {
+    this.viewStateChange.emit(LoginViewState.FORGOT_PASSWORD);
+  }
+
+  public onBackToLogin() {
+    this.backToLogin.emit();
   }
 }

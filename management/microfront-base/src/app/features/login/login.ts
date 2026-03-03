@@ -31,17 +31,61 @@ export class Login implements OnInit {
         this.loading.set(false);
       },
       error: (error) => {
-        this.snackBar.showError(error.error.message);
+        this.snackBar.showError(error.error?.message || 'Login failed');
         this.loading.set(false);
       },
     });
   }
 
-  handleTwoFactorAuthSuccess(event: string) {
-    console.log(event);
+  handleTwoFactorEmit(event: string) {
+    if (event === 'email' || event === 'phone') {
+      this.viewState.set(LoginViewState.TWO_FACTOR);
+    } else {
+      // It's the code
+      this.loading.set(true);
+      // Assuming email is stored or available from loginForm somehow.
+      // For now let's just log and set success.
+      console.log('2FA Code:', event);
+      this.loading.set(false);
+      // Logic for 2FA verification would go here
+    }
   }
 
   handlePasswordRecovery(event: string) {
-    console.log(event);
+    if (this.viewState() === LoginViewState.FORGOT_PASSWORD) {
+      // It's the email
+      this.loading.set(true);
+      this.authService.recovery({ email: event, phone: '' }).subscribe({
+        next: () => {
+          this.viewState.set(LoginViewState.RECOVERY_PASSWORD);
+          this.loading.set(false);
+        },
+        error: (error) => {
+          this.snackBar.showError(error.error?.message || 'Recovery failed');
+          this.loading.set(false);
+        },
+      });
+    } else if (this.viewState() === LoginViewState.RECOVERY_PASSWORD) {
+      this.loading.set(true);
+      this.authService.recoverySuccess(event).subscribe({
+        next: () => {
+          this.snackBar.showSuccess('Password recovered successfully');
+          this.viewState.set(LoginViewState.LOGIN);
+          this.loading.set(false);
+        },
+        error: (error) => {
+          this.snackBar.showError(error.error?.message || 'Invalid code');
+          this.loading.set(false);
+        },
+      });
+    }
+  }
+
+  handleViewStateChange(state: LoginViewState) {
+    this.viewState.set(state);
+  }
+
+  handleBackToLogin() {
+    this.viewState.set(LoginViewState.LOGIN);
   }
 }
