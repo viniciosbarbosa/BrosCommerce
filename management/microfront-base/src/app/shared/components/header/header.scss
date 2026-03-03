@@ -16,7 +16,6 @@
   background: var(--bg-primary);
   border-bottom: 0.0625rem solid var(--border-color);
   box-shadow: $shadow-sm;
-  // transition: $transition-default;
   @include glassmorphism;
 
   &.menu-open {
@@ -64,10 +63,9 @@
   }
 }
 
-// Group Navigation and Actions to the right
 .header-right {
   @include flex-center;
-  gap: $spacing-2xl; // Large gap between nav and actions
+  gap: $spacing-2xl;
 
   @include respond-to(lg) {
     display: flex;
@@ -279,7 +277,7 @@
   border: none;
   cursor: pointer;
   padding: $spacing-sm;
-  z-index: 1200;
+  z-index: 1;
 
   @include respond-to(lg) {
     display: none;

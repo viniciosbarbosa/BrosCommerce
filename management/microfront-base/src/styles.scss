@@ -44,3 +44,17 @@ $theme-neutral: mat.define-theme(
 .theme-neutral {
   @include mat.all-component-themes($theme-neutral);
 }
+
+// ─── 4. GLOBAL OVERLAYS (SnackBar, Dialogs) ────────────────
+.cdk-overlay-container {
+  z-index: 2000 !important;
+}
+
+// Ensure custom snackbar takes priority over default material styles if needed
+.mat-mdc-snack-bar-container {
+  .mdc-snackbar__surface {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}

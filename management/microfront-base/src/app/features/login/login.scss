@@ -1,0 +1,20 @@
+@use 'app/shared/scss/variables' as *;
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  padding: $spacing-lg;
+
+  // Sutle radial gradient using accent color
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(121, 134, 203, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(121, 134, 203, 0.03) 0%, transparent 40%);
+}
+
+.form-container {
+  width: 100%;
+  max-width: 440px;
+}

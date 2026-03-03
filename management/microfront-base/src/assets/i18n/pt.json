@@ -20,5 +20,45 @@
     "GENERIC_TITLE": "Erro inesperado",
     "GENERIC_MESSAGE": "Ocorreu um erro inesperado.",
     "BACK_HOME": "Home"
+  },
+
+  "LOGIN": {
+    "SIGN_IN": "Iniciar sessão",
+    "SIGN_UP": "Cadastrar",
+    "EMAIL": "Email",
+    "PASSWORD": "Senha",
+    "CONFIRM_PASSWORD": "Confirmar senha",
+    "NAME": "Nome",
+    "SUBMIT": "Enviar",
+    "SEND": "Enviar",
+    "LANGUAGE": "Idioma",
+    "KEEP_ME_LOGGED": "Manter conectado",
+    "FORGOT_PASSWORD": "Esqueci minha senha",
+    "BACK_TO_LOGIN": "Voltar para o login",
+    "RECOVER_TITLE": "Recuperar Senha",
+    "RECOVER_MESSAGE": "Informe seu e-mail para receber as instruções de recuperação.",
+    "RECOVER_SUCCESS": "Um e-mail de recuperação foi enviado!",
+    "ERROR_NAME_MIN": "Nome deve ter no mínimo 3 caracteres",
+    "ERROR_PASSWORD_MIN": "Senha deve ter no mínimo 6 caracteres",
+    "ERROR_PASSWORD_REQUIRED": "Senha é obrigatória",
+    "ERROR_EMAIL_INVALID": "E-mail inválido",
+    "ERROR_EMAIL_REQUIRED": "E-mail é obrigatório"
+  },
+  "TWO_FACTOR": {
+    "TITLE": "Autenticação de Dois Fatores",
+    "MESSAGE": "Informe o código enviado para o seu dispositivo.",
+    "METHOD_MESSAGE": "Escolha como deseja receber o código de verificação.",
+    "CODE_LABEL": "Código de Verificação",
+    "PHONE_LABEL": "Telefone",
+    "METHOD_LABEL": "Método de Verificação",
+    "METHODS": {
+      "EMAIL": "E-mail",
+      "PHONE": "Telefone"
+    },
+    "SUBMIT": "Verificar",
+    "NEXT": "Avançar",
+    "BACK_TO_LOGIN": "Voltar para o login",
+    "ERROR_CODE_REQUIRED": "Código é obrigatório",
+    "ERROR_PHONE_REQUIRED": "Telefone é obrigatório"
   }
 }

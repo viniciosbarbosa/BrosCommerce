@@ -20,5 +20,43 @@
     "GENERIC_TITLE": "Unexpected error",
     "GENERIC_MESSAGE": "An unexpected error occurred.",
     "BACK_HOME": "Home"
+  },
+  "LOGIN": {
+    "SIGN_IN": "Sign In",
+    "SIGN_UP": "Sign Up",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm password",
+    "NAME": "Name",
+    "SUBMIT": "Submit",
+    "SEND": "Send",
+    "KEEP_ME_LOGGED": "Keep me logged in",
+    "FORGOT_PASSWORD": "Forgot my password",
+    "BACK_TO_LOGIN": "Back to login",
+    "RECOVER_TITLE": "Recover Password",
+    "RECOVER_MESSAGE": "Enter your email to receive recovery instructions.",
+    "RECOVER_SUCCESS": "A recovery email has been sent!",
+    "ERROR_NAME_MIN": "Name must be at least 3 characters",
+    "ERROR_PASSWORD_MIN": "Password must be at least 6 characters",
+    "ERROR_EMAIL_INVALID": "Invalid email",
+    "ERROR_EMAIL_REQUIRED": "Email is required",
+    "ERROR_PASSWORD_REQUIRED": "Password is required"
+  },
+  "TWO_FACTOR": {
+    "TITLE": "Two-Factor Authentication",
+    "MESSAGE": "Enter the code sent to your device.",
+    "METHOD_MESSAGE": "Choose how you want to receive the verification code.",
+    "CODE_LABEL": "Verification Code",
+    "PHONE_LABEL": "Phone Number",
+    "METHOD_LABEL": "Verification Method",
+    "METHODS": {
+      "EMAIL": "Email",
+      "PHONE": "Phone"
+    },
+    "SUBMIT": "Verify",
+    "NEXT": "Next",
+    "BACK_TO_LOGIN": "Back to login",
+    "ERROR_CODE_REQUIRED": "Code is required",
+    "ERROR_PHONE_REQUIRED": "Phone number is required"
   }
 }

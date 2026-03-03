@@ -1,0 +1,139 @@
+<div class="form-wrapper">
+  @if (viewState() === LoginViewState.LOGIN) {
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <h2 class="form-title">{{ 'LOGIN.SIGN_IN' | translate }}</h2>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'LOGIN.EMAIL' | translate }}</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="example@mail.com" />
+        @if (loginForm.get('email')?.hasError('required')) {
+          <mat-error>{{ 'LOGIN.ERROR_EMAIL_REQUIRED' | translate }}</mat-error>
+        }
+        @if (loginForm.get('email')?.hasError('email')) {
+          <mat-error>{{ 'LOGIN.ERROR_EMAIL_INVALID' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'LOGIN.PASSWORD' | translate }}</mat-label>
+        <input matInput type="password" formControlName="password" placeholder="••••••" />
+        @if (loginForm.get('password')?.hasError('required')) {
+          <mat-error>{{ 'LOGIN.ERROR_PASSWORD_REQUIRED' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="options">
+        <mat-checkbox formControlName="keepMeLogged">
+          {{ 'LOGIN.KEEP_ME_LOGGED' | translate }}
+        </mat-checkbox>
+
+        <button type="button" class="btn-forgot" (click)="nextStep(LoginViewState.FORGOT_PASSWORD)">
+          {{ 'LOGIN.FORGOT_PASSWORD' | translate }}
+        </button>
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="loginForm.invalid">
+        {{ 'LOGIN.SIGN_IN' | translate }}
+      </button>
+    </form>
+  }
+
+  @if (viewState() === LoginViewState.SELECT_2_FACTOR_METHOD) {
+    <form [formGroup]="methodForm" (ngSubmit)="onSubmit()" class="login-form">
+      <h2 class="form-title">{{ 'TWO_FACTOR.TITLE' | translate }}</h2>
+      <p class="form-description">{{ 'TWO_FACTOR.METHOD_MESSAGE' | translate }}</p>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'TWO_FACTOR.METHOD_LABEL' | translate }}</mat-label>
+        <mat-select formControlName="method">
+          <mat-option value="email">{{ 'TWO_FACTOR.METHODS.EMAIL' | translate }}</mat-option>
+          <mat-option value="phone">{{ 'TWO_FACTOR.METHODS.PHONE' | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="recovery-actions">
+        <button type="submit" class="btn-submit" [disabled]="methodForm.invalid">
+          {{ 'TWO_FACTOR.NEXT' | translate }}
+        </button>
+
+        <button type="button" class="btn-back" (click)="nextStep(LoginViewState.LOGIN)">
+          {{ 'TWO_FACTOR.BACK_TO_LOGIN' | translate }}
+        </button>
+      </div>
+    </form>
+  }
+
+  @if (viewState() === LoginViewState.TWO_FACTOR) {
+    <form [formGroup]="twoFactorAuthForm" (ngSubmit)="onSubmit()" class="login-form">
+      <h2 class="form-title">{{ 'TWO_FACTOR.TITLE' | translate }}</h2>
+      <p class="form-description">
+        {{ 'TWO_FACTOR.MESSAGE' | translate }}
+        <br />
+        @if (methodForm.get('method')?.value === 'email') {
+          <strong>{{ loginForm.get('email')?.value }}</strong>
+        } @else {
+          <strong>{{ 'TWO_FACTOR.METHODS.PHONE' | translate }}</strong>
+        }
+      </p>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'TWO_FACTOR.CODE_LABEL' | translate }}</mat-label>
+        <input matInput formControlName="code" mask="000 000" placeholder="000 000" />
+        @if (twoFactorAuthForm.get('code')?.hasError('required')) {
+          <mat-error>{{ 'TWO_FACTOR.ERROR_CODE_REQUIRED' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="recovery-actions">
+        <button type="submit" class="btn-submit" [disabled]="twoFactorAuthForm.invalid">
+          {{ 'TWO_FACTOR.SUBMIT' | translate }}
+        </button>
+
+        <button type="button" class="btn-back" (click)="nextStep(LoginViewState.LOGIN)">
+          {{ 'TWO_FACTOR.BACK_TO_LOGIN' | translate }}
+        </button>
+      </div>
+    </form>
+  }
+
+  @if (viewState() === LoginViewState.FORGOT_PASSWORD) {
+    <form [formGroup]="recoveryForm" (ngSubmit)="onSubmit()" class="recovery-form">
+      <h2 class="form-title">{{ 'LOGIN.RECOVER_TITLE' | translate }}</h2>
+      <p class="form-description">{{ 'LOGIN.RECOVER_MESSAGE' | translate }}</p>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'LOGIN.EMAIL' | translate }}</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="example@mail.com" />
+        @if (recoveryForm.get('email')?.hasError('required')) {
+          <mat-error>{{ 'LOGIN.ERROR_EMAIL_REQUIRED' | translate }}</mat-error>
+        }
+        @if (recoveryForm.get('email')?.hasError('email')) {
+          <mat-error>{{ 'LOGIN.ERROR_EMAIL_INVALID' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="recovery-actions">
+        <button type="submit" class="btn-submit" [disabled]="recoveryForm.invalid">
+          {{ 'LOGIN.SEND' | translate }}
+        </button>
+
+        <button type="button" class="btn-back" (click)="nextStep(LoginViewState.LOGIN)">
+          {{ 'LOGIN.BACK_TO_LOGIN' | translate }}
+        </button>
+      </div>
+    </form>
+  }
+
+  @if (viewState() === LoginViewState.RECOVERY_SUCCESS) {
+    <div class="success-view">
+      <div class="success-icon">
+        <mat-icon>check_circle</mat-icon>
+      </div>
+      <h2 class="form-title">{{ 'LOGIN.RECOVER_SUCCESS' | translate }}</h2>
+
+      <button type="button" class="btn-submit" (click)="nextStep(LoginViewState.LOGIN)">
+        {{ 'LOGIN.BACK_TO_LOGIN' | translate }}
+      </button>
+    </div>
+  }
+</div>

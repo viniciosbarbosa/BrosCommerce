@@ -4,6 +4,7 @@ export const environment = {
   supportedLangs: ['pt', 'en', 'es'],
   defaultLang: 'en',
   theme: 'theme-dark',
+  snackBarDuration: 3000,
   remotes: {
     productCategory: 'http://localhost:4201/remoteEntry.js',
     report: 'http://localhost:4202/remoteEntry.js',

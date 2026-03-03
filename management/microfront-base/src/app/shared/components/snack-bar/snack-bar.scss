@@ -1,0 +1,43 @@
+@use 'app/shared/scss/variables' as *;
+@use 'app/shared/scss/mixins' as *;
+@use 'app/shared/scss/shadows' as *;
+@use 'app/shared/scss/colors' as *;
+
+:host {
+  display: block;
+}
+
+.custom-snack-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.75rem 1.25rem;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-lg;
+  color: $white;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
+
+  &.success {
+    background-color: var(--success);
+  }
+
+  &.error {
+    background-color: var(--danger);
+  }
+
+  &.warning {
+    background-color: var(--warning);
+  }
+
+  &.info {
+    background-color: var(--accent);
+  }
+}
+
+.snack-bar-message {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}

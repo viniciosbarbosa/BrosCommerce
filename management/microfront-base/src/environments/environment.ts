@@ -4,4 +4,5 @@ export const environment = {
   supportedLangs: ['pt', 'en', 'es'],
   defaultLang: 'en',
   theme: 'theme-dark',
+  snackBarDuration: 3000,
 };

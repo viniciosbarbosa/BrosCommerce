@@ -37,7 +37,10 @@
             "outputPath": "dist/microfront-base",
             "index": "src/index.html",
             "extraWebpackConfig": "webpack.config.js",
-            "commonChunk": false
+            "commonChunk": false,
+            "stylePreprocessorOptions": {
+              "includePaths": ["src"]
+            }
           },
           "configurations": {
             "production": {
