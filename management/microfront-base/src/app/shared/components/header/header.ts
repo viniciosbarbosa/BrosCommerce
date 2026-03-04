@@ -1,4 +1,4 @@
-import { InternalRoutes } from './../../routes/internal.routes';
+import { InternalRoutes } from '../../routes/internal.routes';
 import { Component, inject, signal } from '@angular/core';
 import { ThemeService } from '../../services/theme/theme.service';
 import { LanguageService } from '../../services/lang/language.service';
@@ -11,6 +11,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Lang } from '../../interfaces/lang/lang';
 import { ErrorCode } from '../../enum/errors/error.enum';
 import { Flag } from '../../utils/flags';
+
+import { headerNavItems, profileNavItems } from './nav/items.nav.';
+import { themeIcons } from './nav/theme.nav';
 
 @Component({
   selector: 'app-header',
@@ -25,14 +28,11 @@ export class Header {
   private router = inject(Router);
   private matIconRegistry = inject(MatIconRegistry);
   private domSanitizer = inject(DomSanitizer);
+  protected readonly navItems = headerNavItems;
+  protected readonly profileItems = profileNavItems;
+  protected readonly themeIcons = themeIcons;
 
   protected readonly InternalRoutes = InternalRoutes;
-
-  protected readonly ThemeIcons: Record<Theme, string> = {
-    [Theme.LIGHT]: 'light_mode',
-    [Theme.DARK]: 'dark_mode',
-    [Theme.NEUTRAL]: 'contrast',
-  };
 
   themeService = inject(ThemeService);
   languageService = inject(LanguageService);

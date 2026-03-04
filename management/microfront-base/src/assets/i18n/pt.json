@@ -1,12 +1,19 @@
 {
   "HEADER": {
-    "LOGIN": "Login",
+    "LOGIN": "Logar",
     "PROFILE": "Perfil",
     "PRODUCTS": "Produtos",
+    "USERS": "Usuários",
+    "REPORTS": "Relatório",
     "ABOUT": "Sobre nós",
     "CONTACT": "Contato",
     "THEME": "Tema",
     "LANG": "Idioma"
+  },
+  "PROFILE": {
+    "PROFILE": "Perfil",
+    "SETTINGS": "Configurações",
+    "LOGOUT": "Sair"
   },
   "TEST": "Teste",
   "ERROR": {

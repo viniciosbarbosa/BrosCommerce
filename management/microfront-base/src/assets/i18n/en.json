@@ -3,9 +3,17 @@
     "LOGIN": "Login",
     "PROFILE": "Profile",
     "PRODUCTS": "Products",
+    "USERS": "Users",
+    "REPORTS": "Reports",
     "ABOUT": "About us",
     "THEME": "Theme",
-    "LANG": "Languague"
+    "LANG": "Languague",
+    "SETTINGS": "Settings"
+  },
+  "PROFILE": {
+    "PROFILE": "Profile",
+    "SETTINGS": "Settings",
+    "LOGOUT": "Logout"
   },
   "TEST": "Test",
   "ERROR": {

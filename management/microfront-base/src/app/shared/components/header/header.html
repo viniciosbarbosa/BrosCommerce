@@ -9,11 +9,11 @@
     <div class="header-right desktop-only">
       <nav class="nav-menu">
         <ul class="nav-list">
-          <li class="nav-item">
-            <a href="#" [routerLink]="InternalRoutes.LOGIN" class="nav-link">{{
-              'HEADER.LOGIN' | translate
-            }}</a>
-          </li>
+          @for (item of navItems; track item.route) {
+            <li class="nav-item">
+              <a [routerLink]="item.route" class="nav-link">{{ item.label | translate }}</a>
+            </li>
+          }
         </ul>
       </nav>
 
@@ -21,21 +21,20 @@
         <div class="selector dropdown profile-dropdown">
           <button class="selector-btn">
             <mat-icon class="header-icon">person</mat-icon>
-
-            <div class="dropdown-content">
-              <div class="dropdown-section">
-                <span class="section-label">{{ 'HEADER.PROFILE' | translate }}</span>
-                <div class="options-list">
-                  <span>1</span>
-                  <div class="divider"></div>
-                  <span>2</span>
-                  <div class="divider"></div>
-                  <span>3</span>
-                  <div class="divider"></div>
-                </div>
+          </button>
+          <div class="dropdown-content">
+            <div class="dropdown-section">
+              <span class="section-label">{{ 'HEADER.PROFILE' | translate }}</span>
+              <div class="options-list">
+                @for (item of profileItems; track item.label) {
+                  <a [routerLink]="item.route" class="option-link">
+                    <mat-icon>{{ item.icon }}</mat-icon>
+                    <span>{{ item.label | translate }}</span>
+                  </a>
+                }
               </div>
             </div>
-          </button>
+          </div>
         </div>
 
         <div class="selector dropdown settings-dropdown">
@@ -69,7 +68,7 @@
                     (click)="setTheme(t)"
                     [title]="t"
                   >
-                    <mat-icon>{{ ThemeIcons[t] }}</mat-icon>
+                    <mat-icon>{{ themeIcons[t] }}</mat-icon>
                   </button>
                 }
               </div>
@@ -91,20 +90,23 @@
   <div class="mobile-menu open">
     <nav class="mobile-nav">
       <ul class="mobile-nav-list">
-        <li>
-          <a href="#" (click)="toggleMenu()">{{ 'HEADER.LOGIN' | translate }}</a>
-        </li>
-        <li>
-          <a href="#" (click)="toggleMenu()">{{ 'HEADER.PRODUCTS' | translate }}</a>
-        </li>
-        <li>
-          <a href="#" (click)="toggleMenu()">{{ 'HEADER.ABOUT' | translate }}</a>
-        </li>
-        <li>
-          <a href="#" class="btn-contact" (click)="toggleMenu()">{{
-            'HEADER.CONTACT' | translate
-          }}</a>
-        </li>
+        @for (item of navItems; track item.route) {
+          <li>
+            <a [routerLink]="item.route" (click)="toggleMenu()">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              {{ item.label | translate }}
+            </a>
+          </li>
+        }
+        <li class="divider"></li>
+        @for (item of profileItems; track item.label) {
+          <li>
+            <a [routerLink]="item.route" (click)="toggleMenu()">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              {{ item.label | translate }}
+            </a>
+          </li>
+        }
       </ul>
 
       <div class="mobile-selectors">
@@ -129,7 +131,7 @@
               [class.active]="themeService.currentTheme() === t"
               (click)="setTheme(t)"
             >
-              <mat-icon>{{ ThemeIcons[t] }}</mat-icon>
+              <mat-icon>{{ themeIcons[t] }}</mat-icon>
             </button>
           }
         </div>

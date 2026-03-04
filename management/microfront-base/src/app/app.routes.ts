@@ -35,6 +35,14 @@ export const routes: Routes = [
       }).then((m) => m.routes),
   },
   {
+    path: InternalRoutes.PROFILE,
+    loadComponent: () => import('./features/profile/profile').then((m) => m.Profile),
+  },
+  {
+    path: InternalRoutes.SETTINGS,
+    loadComponent: () => import('./features/settings/settings').then((m) => m.Settings),
+  },
+  {
     path: InternalRoutes.LOGIN,
     loadComponent: () => import('./features/login/login').then((m) => m.Login),
   },
