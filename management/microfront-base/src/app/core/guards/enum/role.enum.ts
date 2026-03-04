@@ -3,4 +3,5 @@ export enum RoleEnum {
   AUDIT = 'AUDIT',
   MASTER = 'MASTER',
   CLIENT = 'CLIENT',
+  ONLOGGED = 'ONLOGGED',
 }

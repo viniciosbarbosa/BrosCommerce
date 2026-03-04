@@ -1,5 +1,5 @@
 import { InternalRoutes } from '../../routes/internal.routes';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ThemeService } from '../../services/theme/theme.service';
 import { LanguageService } from '../../services/lang/language.service';
 import { Theme } from '../../enum/theme/theme.enum';
@@ -15,31 +15,40 @@ import { Flag } from '../../utils/flags';
 import { headerNavItems, profileNavItems } from './nav/items.nav.';
 import { themeIcons } from './nav/theme.nav';
 
+import { computed } from '@angular/core';
+import { AuthService } from '../../../core/auth/auth.service';
+
 @Component({
   selector: 'app-header',
   imports: [CommonModule, TranslateModule, RouterLink, MatIconModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
-export class Header {
-  protected readonly Theme = Theme;
-  protected readonly Lang = Lang;
-  protected readonly Object = Object;
+export class Header implements OnInit {
   private router = inject(Router);
   private matIconRegistry = inject(MatIconRegistry);
   private domSanitizer = inject(DomSanitizer);
-  protected readonly navItems = headerNavItems;
-  protected readonly profileItems = profileNavItems;
+  private authService = inject(AuthService);
+  protected readonly Theme = Theme;
+  protected readonly Lang = Lang;
+  protected readonly Object = Object;
   protected readonly themeIcons = themeIcons;
-
   protected readonly InternalRoutes = InternalRoutes;
+  protected readonly themeService = inject(ThemeService);
+  protected readonly languageService = inject(LanguageService);
+  protected readonly isMenuOpen = signal(false);
+  protected readonly navItems = computed(() =>
+    headerNavItems.filter(
+      (item) => !item.roles || item.roles.includes(this.authService.currentUserRole()),
+    ),
+  );
+  protected readonly profileItems = computed(() =>
+    profileNavItems.filter(
+      (item) => !item.roles || item.roles.includes(this.authService.currentUserRole()),
+    ),
+  );
 
-  themeService = inject(ThemeService);
-  languageService = inject(LanguageService);
-
-  isMenuOpen = signal(false);
-
-  constructor() {
+  ngOnInit(): void {
     this.registerIcons();
   }
 
@@ -52,19 +61,19 @@ export class Header {
     });
   }
 
-  setTheme(theme: Theme) {
+  public setTheme(theme: Theme) {
     this.themeService.setTheme(theme);
   }
 
-  changeLanguage(langCode: string) {
+  public changeLanguage(langCode: string) {
     this.languageService.setLanguage(langCode);
   }
 
-  toggleMenu() {
+  public toggleMenu() {
     this.isMenuOpen.update((val) => !val);
   }
 
-  navigateToError(code: ErrorCode) {
+  public navigateToError(code: ErrorCode) {
     this.router.navigate(['/error'], {
       state: {
         code,

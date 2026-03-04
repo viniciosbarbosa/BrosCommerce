@@ -54,7 +54,7 @@ export const routes: Routes = [
     path: InternalRoutes.ERROR,
     loadComponent: () => import('./shared/components/error/error').then((m) => m.Error),
   },
-  { path: '', redirectTo: InternalRoutes.HOME, pathMatch: 'full' },
+  { path: '', redirectTo: InternalRoutes.LOGIN, pathMatch: 'full' },
   {
     path: InternalRoutes.ERROR,
     component: Error,

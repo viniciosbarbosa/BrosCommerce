@@ -9,7 +9,7 @@
     <div class="header-right desktop-only">
       <nav class="nav-menu">
         <ul class="nav-list">
-          @for (item of navItems; track item.route) {
+          @for (item of navItems(); track item.route) {
             <li class="nav-item">
               <a [routerLink]="item.route" class="nav-link">{{ item.label | translate }}</a>
             </li>
@@ -26,7 +26,7 @@
             <div class="dropdown-section">
               <span class="section-label">{{ 'HEADER.PROFILE' | translate }}</span>
               <div class="options-list">
-                @for (item of profileItems; track item.label) {
+                @for (item of profileItems(); track item.label) {
                   <a [routerLink]="item.route" class="option-link">
                     <mat-icon>{{ item.icon }}</mat-icon>
                     <span>{{ item.label | translate }}</span>
@@ -90,7 +90,7 @@
   <div class="mobile-menu open">
     <nav class="mobile-nav">
       <ul class="mobile-nav-list">
-        @for (item of navItems; track item.route) {
+        @for (item of navItems(); track item.route) {
           <li>
             <a [routerLink]="item.route" (click)="toggleMenu()">
               <mat-icon>{{ item.icon }}</mat-icon>
@@ -99,7 +99,7 @@
           </li>
         }
         <li class="divider"></li>
-        @for (item of profileItems; track item.label) {
+        @for (item of profileItems(); track item.label) {
           <li>
             <a [routerLink]="item.route" (click)="toggleMenu()">
               <mat-icon>{{ item.icon }}</mat-icon>
