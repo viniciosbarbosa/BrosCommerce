@@ -1,4 +1,6 @@
 @if (authService.isAuthenticated()) {
   <app-header />
+} @else {
+  <app-header-offline />
 }
 <router-outlet />

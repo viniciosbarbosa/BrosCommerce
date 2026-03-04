@@ -388,9 +388,12 @@
         font-size: $font-size-2xl;
         font-weight: $font-weight-bold;
         transition: color $transition-default;
-
         &:hover {
           color: var(--accent);
+        }
+
+        mat-icon {
+          transform: translate(-3px, 3px);
         }
 
         &.btn-contact {

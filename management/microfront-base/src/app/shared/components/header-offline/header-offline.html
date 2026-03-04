@@ -1,0 +1,37 @@
+<div class="header-offline">
+  <div class="logo-wrapper">
+    <div class="logo">
+      <span class="logo-text">Bros</span><span class="logo-highlight">Commerce</span>
+    </div>
+  </div>
+
+  <div class="config-actions">
+    <div class="selector-group">
+      @for (lang of Object.values(Lang); track lang.code) {
+        <button
+          class="icon-btn"
+          [class.active]="languageService.currentLanguage() === lang.code"
+          (click)="changeLanguage(lang.code)"
+          [title]="lang.name"
+        >
+          <mat-icon [svgIcon]="lang.icon"></mat-icon>
+        </button>
+      }
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="selector-group">
+      @for (t of themeList; track t) {
+        <button
+          class="icon-btn"
+          [class.active]="themeService.currentTheme() === t"
+          (click)="setTheme(t)"
+          [title]="t"
+        >
+          <mat-icon>{{ themeIcons[t] }}</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+</div>
