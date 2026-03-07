@@ -5,10 +5,11 @@ import { environment } from '../environments/environment.development';
 import { InternalRoutes } from './shared/routes/internal.routes';
 import { Error } from './shared/components/error/error';
 import { ErrorCode } from './shared/enum/errors/error.enum';
+import { ExternalRoutes } from './shared/routes/external.routes';
 
 export const routes: Routes = [
   {
-    path: 'product-category',
+    path: ExternalRoutes.PRODUCT_CATEGORY,
     loadChildren: () =>
       loadRemoteModule({
         type: 'module',
@@ -17,7 +18,7 @@ export const routes: Routes = [
       }).then((m) => m.routes),
   },
   {
-    path: 'report',
+    path: ExternalRoutes.REPORT,
     loadChildren: () =>
       loadRemoteModule({
         type: 'module',
@@ -26,7 +27,7 @@ export const routes: Routes = [
       }).then((m) => m.routes),
   },
   {
-    path: 'users',
+    path: ExternalRoutes.USERS,
     loadChildren: () =>
       loadRemoteModule({
         type: 'module',
@@ -45,6 +46,13 @@ export const routes: Routes = [
   {
     path: InternalRoutes.LOGIN,
     loadComponent: () => import('./features/login/login').then((m) => m.Login),
+  },
+  {
+    path: InternalRoutes.RESET_PASSWORD,
+    loadChildren: () =>
+      import('./features/reset-password/routes/reset-passoword.routes').then(
+        (m) => m.resetPasswordRoutes,
+      ),
   },
   {
     path: InternalRoutes.HOME,

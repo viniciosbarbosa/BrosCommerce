@@ -49,6 +49,7 @@
     "ERROR_NAME_MIN": "Nome deve ter no mínimo 3 caracteres",
     "ERROR_PASSWORD_MIN": "Senha deve ter no mínimo 6 caracteres",
     "ERROR_PASSWORD_REQUIRED": "Senha é obrigatória",
+    "ERROR_CONFIRMATION_PASSWORD_REQUIRED": "Confirmação de senha é obrigatória",
     "ERROR_EMAIL_INVALID": "E-mail inválido",
     "ERROR_EMAIL_REQUIRED": "E-mail é obrigatório"
   },
@@ -68,5 +69,18 @@
     "BACK_TO_LOGIN": "Voltar para o login",
     "ERROR_CODE_REQUIRED": "Código é obrigatório",
     "ERROR_PHONE_REQUIRED": "Telefone é obrigatório"
+  },
+  "RESET_PASSWORD": {
+    "TITLE": "Recuperar Senha",
+    "MESSAGE": "Insira uma nova senha para continuar.",
+    "SUBMIT": "Enviar",
+    "PASSWORD_RULES": "A senha deve ter letras maiúsculas e minúsculas, um número e um caractere especial.",
+    "ERROR_PASSWORD_REQUIRED": "Senha é obrigatória",
+    "ERROR_PASSWORD_MIN_LENGTH": "Senha deve ter no mínimo 6 caracteres",
+    "ERROR_PASSWORD_UPPERCASE": "Senha deve conter pelo menos uma letra maiúscula",
+    "ERROR_PASSWORD_LOWERCASE": "Senha deve conter pelo menos uma letra minúscula",
+    "ERROR_PASSWORD_NUMBER": "Senha deve conter pelo menos um número",
+    "ERROR_PASSWORD_SPECIAL": "Senha deve conter pelo menos um caractere especial",
+    "ERROR_PASSWORD_MISMATCH": "As senhas não coincidem"
   }
 }

@@ -66,5 +66,19 @@
     "BACK_TO_LOGIN": "Back to login",
     "ERROR_CODE_REQUIRED": "Code is required",
     "ERROR_PHONE_REQUIRED": "Phone number is required"
+  },
+  "RESET_PASSWORD": {
+    "TITLE": "Reset Password",
+    "MESSAGE": "Enter a new password to continue.",
+    "SUBMIT": "Submit",
+    "PASSWORD_RULES": "Password must include uppercase and lowercase letters, a number, and a special character.",
+    "ERROR_PASSWORD_REQUIRED": "Password is required",
+    "ERROR_CONFIRMATION_PASSWORD_REQUIRED": "Confirm password is required",
+    "ERROR_PASSWORD_MIN_LENGTH": "Password must be at least 6 characters long",
+    "ERROR_PASSWORD_UPPERCASE": "Password must contain at least one uppercase letter",
+    "ERROR_PASSWORD_LOWERCASE": "Password must contain at least one lowercase letter",
+    "ERROR_PASSWORD_NUMBER": "Password must contain at least one number",
+    "ERROR_PASSWORD_SPECIAL": "Password must contain at least one special character",
+    "ERROR_PASSWORD_MISMATCH": "Passwords do not match"
   }
 }

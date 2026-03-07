@@ -1,25 +1,25 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { Theme } from '../../enum/theme/theme.enum';
+import { LocalStorageService } from '../../../core/services/local.storage/local.storage';
+import { LocalStorageKey } from '../../enum/local-storage/localStorage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  private readonly STORAGE_KEY = 'theme';
-
+  private localStorageService = inject(LocalStorageService);
   currentTheme = signal<Theme>(this.getSavedTheme());
 
   private getSavedTheme(): Theme {
-    console.log(localStorage.getItem(this.STORAGE_KEY));
-    return (localStorage.getItem(this.STORAGE_KEY) as Theme) ?? environment.theme;
+    return (this.localStorageService.getItem(LocalStorageKey.THEME) as Theme) ?? environment.theme;
   }
 
   setTheme(theme: Theme): void {
     this.currentTheme.set(theme);
     document.body.classList.remove(...Object.values(Theme));
     document.body.classList.add(theme);
-    localStorage.setItem(this.STORAGE_KEY, theme);
+    this.localStorageService.setItem(LocalStorageKey.THEME, theme);
   }
 
   setThemeFromApi(theme: Theme): void {

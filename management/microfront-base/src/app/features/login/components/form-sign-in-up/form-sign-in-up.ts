@@ -5,9 +5,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FormGroup, NonNullableFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxMaskDirective } from 'ngx-mask';
-import { LoginViewState } from '../../models/login-view-state.enum';
-import { LoginRequest } from '../../models/request/login.request';
+import { LoginViewState } from '../../model/login-view-state.enum';
+import { LoginRequest } from '../../model/request/login.request';
 import { Loading } from '../../../../shared/components/loading/loading';
+import { Router } from '@angular/router';
+import { InternalRoutes } from '../../../../shared/routes/internal.routes';
 
 @Component({
   selector: 'app-form-sign-in-up',
@@ -28,7 +30,7 @@ export class FormSignInUp {
   private fb = inject(NonNullableFormBuilder);
   protected readonly LoginViewState = LoginViewState;
   hidePassword = signal<boolean>(true);
-
+  route = inject(Router);
   viewState = input<LoginViewState>();
 
   loading = input<boolean>(false);
@@ -45,20 +47,16 @@ export class FormSignInUp {
     keepMeLogged: [false],
   });
 
-  recoveryForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-  });
-
-  recoveryCodeForm: FormGroup = this.fb.group({
-    code: ['', [Validators.required, Validators.minLength(6)]],
-  });
-
   methodForm: FormGroup = this.fb.group({
-    method: ['email', [Validators.required]],
+    method: ['', [Validators.required]],
   });
 
   twoFactorAuthForm: FormGroup = this.fb.group({
-    code: ['', [Validators.required, Validators.minLength(6)]],
+    code: ['', [Validators.required, Validators.pattern(/^\d{6}$/)]],
+  });
+
+  recoveryForm: FormGroup = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
   });
 
   onSubmit() {
@@ -74,9 +72,6 @@ export class FormSignInUp {
         break;
       case LoginViewState.FORGOT_PASSWORD:
         this.handleRecovery();
-        break;
-      case LoginViewState.RECOVERY_PASSWORD:
-        this.handleRecoveryCode();
         break;
     }
   }
@@ -106,14 +101,6 @@ export class FormSignInUp {
       return;
     }
     this.passwordRecoveryEmit.emit(this.recoveryForm.getRawValue().email);
-  }
-
-  private handleRecoveryCode() {
-    if (this.recoveryCodeForm.invalid) {
-      this.recoveryCodeForm.markAllAsTouched();
-      return;
-    }
-    this.passwordRecoveryEmit.emit(this.recoveryCodeForm.getRawValue().code);
   }
 
   private handleTwoFactor() {

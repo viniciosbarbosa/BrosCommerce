@@ -38,11 +38,11 @@
     "NAME": "Nombre",
     "SUBMIT": "Enviar",
     "SEND": "Enviar",
-    "KEEP_ME_LOGGED": "Mantener sesión iniciada",
-    "FORGOT_PASSWORD": "Olvidé minha senha",
+    "KEEP_ME_LOGGED": "Mantener sesión",
+    "FORGOT_PASSWORD": "Olvidé mi contraseña",
     "BACK_TO_LOGIN": "Volver al login",
     "RECOVER_TITLE": "Recuperar Contraseña",
-    "RECOVER_MESSAGE": "Ingrese seu email para recibir las instrucciones de recuperación.",
+    "RECOVER_MESSAGE": "Ingrese su email para recibir las instrucciones de recuperación.",
     "RECOVER_SUCCESS": "¡Se ha enviado un email de recuperación!",
     "ERROR_NAME_MIN": "El nombre debe tener al menos 3 caracteres",
     "ERROR_PASSWORD_MIN": "La contraseña debe tener al menos 6 caracteres",
@@ -66,5 +66,21 @@
     "BACK_TO_LOGIN": "Voltar para o login",
     "ERROR_CODE_REQUIRED": "Código é obrigatório",
     "ERROR_PHONE_REQUIRED": "Telefone é obrigatório"
+  },
+  "RESET_PASSWORD": {
+    "TITLE": "Restablecer contraseña",
+    "MESSAGE": "Ingrese una nueva contraseña para continuar.",
+    "SUBMIT": "Enviar",
+
+    "PASSWORD_RULES": "La contraseña debe incluir letras mayúsculas y minúsculas, un número y un carácter especial.",
+
+    "ERROR_PASSWORD_REQUIRED": "La contraseña es obligatoria",
+    "ERROR_CONFIRMATION_PASSWORD_REQUIRED": "Confirmación de contraseña es obligatoria",
+    "ERROR_PASSWORD_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres",
+    "ERROR_PASSWORD_UPPERCASE": "La contraseña debe contener al menos una letra mayúscula",
+    "ERROR_PASSWORD_LOWERCASE": "La contraseña debe contener al menos una letra minúscula",
+    "ERROR_PASSWORD_NUMBER": "La contraseña debe contener al menos un número",
+    "ERROR_PASSWORD_SPECIAL": "La contraseña debe contener al menos un carácter especial",
+    "ERROR_PASSWORD_MISMATCH": "Las contraseñas no coinciden"
   }
 }

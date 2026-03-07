@@ -4,4 +4,5 @@ export enum InternalRoutes {
   LOGIN = 'login',
   PROFILE = 'profile',
   SETTINGS = 'settings',
+  RESET_PASSWORD = 'reset-password',
 }

@@ -74,10 +74,6 @@
         <button type="submit" class="btn-submit" [disabled]="methodForm.invalid">
           {{ 'TWO_FACTOR.NEXT' | translate }}
         </button>
-
-        <!-- <button type="button" class="btn-back">
-          {{ 'TWO_FACTOR.BACK_TO_LOGIN' | translate }}
-        </button> -->
       </div>
     </form>
   }
@@ -129,31 +125,6 @@
 
       <div class="recovery-actions">
         <button type="submit" class="btn-submit" [disabled]="recoveryForm.invalid">
-          {{ 'LOGIN.SEND' | translate }}
-        </button>
-
-        <button type="button" class="btn-back" (click)="onBackToLogin()">
-          {{ 'LOGIN.BACK_TO_LOGIN' | translate }}
-        </button>
-      </div>
-    </form>
-  }
-
-  @if (viewState() === LoginViewState.RECOVERY_PASSWORD) {
-    <form [formGroup]="recoveryCodeForm" (ngSubmit)="onSubmit()" class="recovery-form">
-      <h2 class="form-title">{{ 'LOGIN.RECOVER_TITLE' | translate }}</h2>
-      <p class="form-description">{{ 'LOGIN.RECOVER_MESSAGE' | translate }}</p>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>{{ 'TWO_FACTOR.CODE_LABEL' | translate }}</mat-label>
-        <input matInput formControlName="code" mask="000-000" placeholder="000-000" />
-        @if (recoveryCodeForm.get('code')?.hasError('required')) {
-          <mat-error>{{ 'TWO_FACTOR.ERROR_CODE_REQUIRED' | translate }}</mat-error>
-        }
-      </mat-form-field>
-
-      <div class="recovery-actions">
-        <button type="submit" class="btn-submit" [disabled]="recoveryCodeForm.invalid">
           {{ 'LOGIN.SEND' | translate }}
         </button>
 
