@@ -83,5 +83,12 @@
     "ERROR_PASSWORD_NUMBER": "La contraseña debe contener al menos un número",
     "ERROR_PASSWORD_SPECIAL": "La contraseña debe contener al menos un carácter especial",
     "ERROR_PASSWORD_MISMATCH": "Las contraseñas no coinciden"
+  },
+  "FOOTER": {
+    "RIGHTS": "Todos los derechos reservados.",
+    "ABOUT": "Sobre Nosotros",
+    "CONTACT": "Contacto",
+    "PRIVACY": "Política de Privacidad",
+    "TERMS": "Términos de Servicio"
   }
 }

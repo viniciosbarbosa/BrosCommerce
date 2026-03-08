@@ -1,0 +1,85 @@
+{
+  "HEADER": {
+    "LOGIN": "登录",
+    "PROFILE": "个人资料",
+    "PRODUCTS": "产品",
+    "USERS": "用户",
+    "REPORTS": "报告",
+    "ABOUT": "关于我们",
+    "CONTACT": "联系",
+    "THEME": "主题",
+    "LANG": "语言"
+  },
+  "PROFILE": {
+    "PROFILE": "个人资料",
+    "SETTINGS": "设置",
+    "LOGOUT": "退出登录"
+  },
+  "TEST": "测试",
+  "ERROR": {
+    "404_TITLE": "页面未找到",
+    "404_MESSAGE": "您要查找的页面不存在或已被移动。",
+    "401_TITLE": "未授权",
+    "401_MESSAGE": "您必须登录才能访问此页面。",
+    "403_TITLE": "拒绝访问",
+    "403_MESSAGE": "您没有权限访问此页面。",
+    "500_TITLE": "服务器内部错误",
+    "500_MESSAGE": "出现了一些问题。请稍后再试。",
+    "GENERIC_TITLE": "意外错误",
+    "GENERIC_MESSAGE": "发生了意外错误。",
+    "BACK_HOME": "首页",
+    "BACK_LOGIN": "登录"
+  },
+  "LOGIN": {
+    "SIGN_IN": "登录",
+    "SIGN_UP": "注册",
+    "EMAIL": "邮箱",
+    "PASSWORD": "密码",
+    "CONFIRM_PASSWORD": "确认密码",
+    "NAME": "姓名",
+    "SUBMIT": "提交",
+    "SEND": "发送",
+    "KEEP_ME_LOGGED": "保持登录",
+    "FORGOT_PASSWORD": "忘记密码",
+    "BACK_TO_LOGIN": "返回登录",
+    "RECOVER_TITLE": "找回密码",
+    "RECOVER_MESSAGE": "请输入您的邮箱以接收恢复说明。",
+    "RECOVER_SUCCESS": "恢复邮件已发送！",
+    "ERROR_NAME_MIN": "姓名至少需要 3 个字符",
+    "ERROR_PASSWORD_MIN": "密码至少需要 6 个字符",
+    "ERROR_EMAIL_INVALID": "邮箱无效",
+    "ERROR_EMAIL_REQUIRED": "邮箱是必填项",
+    "ERROR_PASSWORD_REQUIRED": "密码是必填项"
+  },
+  "TWO_FACTOR": {
+    "TITLE": "双重身份验证",
+    "MESSAGE": "请输入发送到您设备的验证码。",
+    "METHOD_MESSAGE": "请选择接收验证码的方式。",
+    "CODE_LABEL": "验证码",
+    "PHONE_LABEL": "电话",
+    "METHOD_LABEL": "验证方式",
+    "METHODS": {
+      "EMAIL": "电子邮件",
+      "PHONE": "电话"
+    },
+    "SUBMIT": "验证",
+    "NEXT": "下一步",
+    "BACK_TO_LOGIN": "返回登录",
+    "ERROR_CODE_REQUIRED": "验证码是必填项",
+    "ERROR_PHONE_REQUIRED": "电话是必填项"
+  },
+  "RESET_PASSWORD": {
+    "TITLE": "重置密码",
+    "MESSAGE": "请输入一个新密码以继续。",
+    "SUBMIT": "提交",
+    "PASSWORD_RULES": "密码必须包含大小写字母、一个数字和一个特殊字符。",
+    "ERROR_PASSWORD_REQUIRED": "密码是必填项",
+    "ERROR_CONFIRMATION_PASSWORD_REQUIRED": "确认密码是必填项",
+    "ERROR_PASSWORD_MIN_LENGTH": "密码至少需要 6 个字符",
+    "ERROR_PASSWORD_UPPERCASE": "密码必须包含至少一个大写字母",
+    "ERROR_PASSWORD_LOWERCASE": "密码必须包含至少一个小写字母",
+    "ERROR_PASSWORD_NUMBER": "密码必须包含至少一个数字",
+    "ERROR_PASSWORD_SPECIAL": "密码必须包含至少一个特殊字符",
+    "ERROR_PASSWORD_MISMATCH": "两次输入的密码不一致"
+  }
+}

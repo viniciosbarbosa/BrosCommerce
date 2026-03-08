@@ -81,5 +81,12 @@
     "ERROR_PASSWORD_NUMBER": "パスワードには少なくとも1つの数字が必要です",
     "ERROR_PASSWORD_SPECIAL": "パスワードには少なくとも1つの特殊文字が必要です",
     "ERROR_PASSWORD_MISMATCH": "パスワードが一致しません"
+  },
+  "FOOTER": {
+    "RIGHTS": "全著作権所有。",
+    "ABOUT": "私たちについて",
+    "CONTACT": "お問い合わせ",
+    "PRIVACY": "プライバシーポリシー",
+    "TERMS": "利用規約"
   }
 }

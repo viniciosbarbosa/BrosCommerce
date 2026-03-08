@@ -81,5 +81,12 @@
     "ERROR_PASSWORD_NUMBER": "Password must contain at least one number",
     "ERROR_PASSWORD_SPECIAL": "Password must contain at least one special character",
     "ERROR_PASSWORD_MISMATCH": "Passwords do not match"
+  },
+  "FOOTER": {
+    "RIGHTS": "All rights reserved.",
+    "ABOUT": "About Us",
+    "CONTACT": "Contact",
+    "PRIVACY": "Privacy Policy",
+    "TERMS": "Terms of Service"
   }
 }

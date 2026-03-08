@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { HttpBaseService } from '../../../../../shared-lib/services/http-base.service';
 import { environment } from '../../../environments/environment.development';
 import { RoleEnum } from '../guards/enum/role.enum';
@@ -17,10 +17,15 @@ export class AuthService extends HttpBaseService {
   private API_URL = environment.apiUrl;
   private localStorageService = inject(LocalStorageService);
   private roleService = inject(RoleService);
+  private token = signal(this.localStorageService.getItem(LocalStorageKey.TOKEN));
+  private user = signal(this.localStorageService.getItem(LocalStorageKey.USER));
 
-  isAuthenticated(): boolean {
-    return !!this.localStorageService.getItem(LocalStorageKey.TOKEN);
-  }
+  isAuthenticated = computed(
+    () =>
+      this.token() !== null &&
+      this.user() !== null &&
+      this.roleService.getRole() !== RoleEnum.ONLOGGED,
+  );
 
   refreshToken(refreshToken: string): Observable<RefreshToken> {
     return this.httpPost(this.API_URL, AUTH_ENDPOINT.REFRESH_TOKEN, { refreshToken });

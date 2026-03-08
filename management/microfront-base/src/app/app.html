@@ -1,6 +1,8 @@
-@if (authService.isAuthenticated()) {
+@if (true) {
   <app-header />
+  <app-header-mobile [isLogged]="isLogged()" />
 } @else {
-  <app-header-offline />
+  <app-header-mobile />
 }
 <router-outlet />
+<app-footer />

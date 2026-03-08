@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit, Signal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
@@ -11,19 +11,19 @@ import { Flag } from '../../utils/flags';
 import { themeIcons, themeList } from '../header/nav/theme.nav';
 
 @Component({
-  selector: 'app-header-offline',
+  selector: 'app-header-mobile',
   standalone: true,
   imports: [CommonModule, TranslateModule, MatIconModule],
-  templateUrl: './header-offline.html',
-  styleUrl: './header-offline.scss',
+  templateUrl: './header-mobile.html',
+  styleUrl: './header-mobile.scss',
 })
-export class HeaderOffline implements OnInit {
+export class HeaderMobile implements OnInit {
+  isLogged = input<Signal<boolean>>();
   protected readonly Theme = Theme;
   protected readonly Lang = Lang;
   protected readonly Object = Object;
   protected readonly themeIcons = themeIcons;
   protected readonly themeList = themeList;
-
   protected readonly themeService = inject(ThemeService);
   protected readonly languageService = inject(LanguageService);
   private matIconRegistry = inject(MatIconRegistry);
@@ -31,6 +31,7 @@ export class HeaderOffline implements OnInit {
 
   ngOnInit(): void {
     this.registerIcons();
+    console.log(this.isLogged);
   }
 
   private registerIcons() {

@@ -83,5 +83,12 @@
     "ERROR_PASSWORD_NUMBER": "Senha deve conter pelo menos um número",
     "ERROR_PASSWORD_SPECIAL": "Senha deve conter pelo menos um caractere especial",
     "ERROR_PASSWORD_MISMATCH": "As senhas não coincidem"
+  },
+  "FOOTER": {
+    "RIGHTS": "Todos os direitos reservados.",
+    "ABOUT": "Sobre Nós",
+    "CONTACT": "Contato",
+    "PRIVACY": "Política de Privacidade",
+    "TERMS": "Termos de Serviço"
   }
 }

@@ -111,19 +111,7 @@
 
       <div class="mobile-selectors">
         <div class="selector-label">{{ 'HEADER.LANG' | translate }}</div>
-        <div class="mobile-group">
-          @for (lang of Object.values(Lang); track lang.code) {
-            <button
-              class="dja"
-              [class.active]="languageService.currentLanguage() === lang.code"
-              (click)="changeLanguage(lang.code)"
-            >
-              <mat-icon [svgIcon]="lang.icon"></mat-icon>
-            </button>
-          }
-        </div>
 
-        <div class="selector-label">{{ 'HEADER.THEME' | translate }}</div>
         <div class="mobile-group">
           @for (t of [Theme.LIGHT, Theme.DARK, Theme.NEUTRAL]; track t) {
             <button
@@ -132,6 +120,20 @@
               (click)="setTheme(t)"
             >
               <mat-icon>{{ themeIcons[t] }}</mat-icon>
+            </button>
+          }
+        </div>
+
+        <div class="selector-label">{{ 'HEADER.THEME' | translate }}</div>
+
+        <div class="mobile-group">
+          @for (lang of Object.values(Lang); track lang.code) {
+            <button
+              class="dja"
+              [class.active]="languageService.currentLanguage() === lang.code"
+              (click)="changeLanguage(lang.code)"
+            >
+              <mat-icon [svgIcon]="lang.icon"></mat-icon>
             </button>
           }
         </div>

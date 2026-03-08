@@ -1,0 +1,92 @@
+{
+  "HEADER": {
+    "LOGIN": "Se connecter",
+    "PROFILE": "Profil",
+    "PRODUCTS": "Produits",
+    "USERS": "Utilisateurs",
+    "REPORTS": "Rapports",
+    "ABOUT": "À propos de nous",
+    "CONTACT": "Contact",
+    "THEME": "Thème",
+    "LANG": "Langue"
+  },
+  "PROFILE": {
+    "PROFILE": "Profil",
+    "SETTINGS": "Paramètres",
+    "LOGOUT": "Se déconnecter"
+  },
+  "TEST": "Test",
+  "ERROR": {
+    "404_TITLE": "Page non trouvée",
+    "404_MESSAGE": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "401_TITLE": "Non autorisé",
+    "401_MESSAGE": "Vous devez vous connecter pour accéder à cette page.",
+    "403_TITLE": "Accès refusé",
+    "403_MESSAGE": "Vous n'avez pas la permission d'accéder à cette page.",
+    "500_TITLE": "Erreur interne",
+    "500_MESSAGE": "Quelque chose s'est mal passé. Veuillez réessayer plus tard.",
+    "GENERIC_TITLE": "Erreur inattendue",
+    "GENERIC_MESSAGE": "Une erreur inattendue s'est produite.",
+    "BACK_HOME": "Accueil",
+    "BACK_LOGIN": "Connexion"
+  },
+  "LOGIN": {
+    "SIGN_IN": "Se connecter",
+    "SIGN_UP": "S'inscrire",
+    "EMAIL": "Email",
+    "PASSWORD": "Mot de passe",
+    "CONFIRM_PASSWORD": "Confirmer le mot de passe",
+    "NAME": "Nom",
+    "SUBMIT": "Envoyer",
+    "SEND": "Envoyer",
+    "KEEP_ME_LOGGED": "Rester connecté",
+    "FORGOT_PASSWORD": "Mot de passe oublié",
+    "BACK_TO_LOGIN": "Retour à la connexion",
+    "RECOVER_TITLE": "Récupérer le mot de passe",
+    "RECOVER_MESSAGE": "Entrez votre email pour recevoir les instructions de récupération.",
+    "RECOVER_SUCCESS": "Un email de récupération a été envoyé !",
+    "ERROR_NAME_MIN": "Le nom doit contenir au moins 3 caractères",
+    "ERROR_PASSWORD_MIN": "Le mot de passe doit contenir au moins 6 caractères",
+    "ERROR_EMAIL_INVALID": "Email invalide",
+    "ERROR_EMAIL_REQUIRED": "L'email est obligatoire",
+    "ERROR_PASSWORD_REQUIRED": "Le mot de passe est obligatoire"
+  },
+  "TWO_FACTOR": {
+    "TITLE": "Authentification à deux facteurs",
+    "MESSAGE": "Entrez le code envoyé à votre appareil.",
+    "METHOD_MESSAGE": "Choisissez comment vous souhaitez recevoir le code de vérification.",
+    "CODE_LABEL": "Code de vérification",
+    "PHONE_LABEL": "Téléphone",
+    "METHOD_LABEL": "Méthode de vérification",
+    "METHODS": {
+      "EMAIL": "E-mail",
+      "PHONE": "Téléphone"
+    },
+    "SUBMIT": "Vérifier",
+    "NEXT": "Suivant",
+    "BACK_TO_LOGIN": "Retour à la connexion",
+    "ERROR_CODE_REQUIRED": "Le code est obligatoire",
+    "ERROR_PHONE_REQUIRED": "Le téléphone est obligatoire"
+  },
+  "RESET_PASSWORD": {
+    "TITLE": "Réinitialiser le mot de passe",
+    "MESSAGE": "Entrez un nouveau mot de passe pour continuer.",
+    "SUBMIT": "Envoyer",
+    "PASSWORD_RULES": "Le mot de passe doit inclure des lettres majuscules et minuscules, un chiffre et un caractère spécial.",
+    "ERROR_PASSWORD_REQUIRED": "Le mot de passe est obligatoire",
+    "ERROR_CONFIRMATION_PASSWORD_REQUIRED": "La confirmation du mot de passe est obligatoire",
+    "ERROR_PASSWORD_MIN_LENGTH": "Le mot de passe doit contenir au moins 6 caractères",
+    "ERROR_PASSWORD_UPPERCASE": "Le mot de passe doit contenir au moins une lettre majuscule",
+    "ERROR_PASSWORD_LOWERCASE": "Le mot de passe doit contenir au moins une lettre minuscule",
+    "ERROR_PASSWORD_NUMBER": "Le mot de passe doit contenir au moins un chiffre",
+    "ERROR_PASSWORD_SPECIAL": "Le mot de passe doit contenir au moins un caractère spécial",
+    "ERROR_PASSWORD_MISMATCH": "Les mots de passe ne correspondent pas"
+  },
+  "FOOTER": {
+    "RIGHTS": "Tous droits réservés.",
+    "ABOUT": "À Propos",
+    "CONTACT": "Contact",
+    "PRIVACY": "Politique de Confidentialité",
+    "TERMS": "Conditions d'Utilisation"
+  }
+}

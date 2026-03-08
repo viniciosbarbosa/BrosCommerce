@@ -17,6 +17,17 @@
   align-items: center;
   gap: $spacing-xl;
   padding: $spacing-sm $spacing-lg;
+
+  @if (isLogged) {
+    @include respond-to('md') {
+      display: none;
+    }
+  } @else {
+    @include respond-to('md') {
+      display: initial;
+    }
+  }
+
   @include glassmorphism(1rem, 0.4);
   border-radius: $border-radius-xl;
   border: 1px solid var(--border-color);
@@ -110,7 +121,7 @@
     max-width: 90vw;
 
     .logo-wrapper {
-      display: none; // Hide logo on mobile to save space
+      display: none;
     }
   }
 }
