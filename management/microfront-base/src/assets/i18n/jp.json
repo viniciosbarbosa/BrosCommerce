@@ -1,0 +1,85 @@
+{
+  "HEADER": {
+    "LOGIN": "ログイン",
+    "PROFILE": "プロフィール",
+    "PRODUCTS": "製品",
+    "USERS": "ユーザー",
+    "REPORTS": "レポート",
+    "ABOUT": "私たちについて",
+    "CONTACT": "お問い合わせ",
+    "THEME": "テーマ",
+    "LANG": "言語"
+  },
+  "PROFILE": {
+    "PROFILE": "プロフィール",
+    "SETTINGS": "設定",
+    "LOGOUT": "ログアウト"
+  },
+  "TEST": "テスト",
+  "ERROR": {
+    "404_TITLE": "ページが見つかりません",
+    "404_MESSAGE": "お探しのページは存在しないか、移動された可能性があります。",
+    "401_TITLE": "未認証",
+    "401_MESSAGE": "このページにアクセスするにはログインが必要です。",
+    "403_TITLE": "アクセス拒否",
+    "403_MESSAGE": "このページにアクセスする権限がありません。",
+    "500_TITLE": "内部サーバーエラー",
+    "500_MESSAGE": "問題が発生しました。後でもう一度お試しください。",
+    "GENERIC_TITLE": "予期しないエラー",
+    "GENERIC_MESSAGE": "予期しないエラーが発生しました。",
+    "BACK_HOME": "ホーム",
+    "BACK_LOGIN": "ログインへ戻る"
+  },
+  "LOGIN": {
+    "SIGN_IN": "ログイン",
+    "SIGN_UP": "登録",
+    "EMAIL": "メール",
+    "PASSWORD": "パスワード",
+    "CONFIRM_PASSWORD": "パスワード確認",
+    "NAME": "名前",
+    "SUBMIT": "送信",
+    "SEND": "送信",
+    "KEEP_ME_LOGGED": "ログイン状態を保持する",
+    "FORGOT_PASSWORD": "パスワードを忘れました",
+    "BACK_TO_LOGIN": "ログインへ戻る",
+    "RECOVER_TITLE": "パスワードを回復する",
+    "RECOVER_MESSAGE": "回復手順を受け取るためにメールアドレスを入力してください。",
+    "RECOVER_SUCCESS": "パスワード回復メールが送信されました！",
+    "ERROR_NAME_MIN": "名前は少なくとも3文字必要です",
+    "ERROR_PASSWORD_MIN": "パスワードは少なくとも6文字必要です",
+    "ERROR_EMAIL_INVALID": "無効なメールアドレス",
+    "ERROR_EMAIL_REQUIRED": "メールアドレスは必須です",
+    "ERROR_PASSWORD_REQUIRED": "パスワードは必須です"
+  },
+  "TWO_FACTOR": {
+    "TITLE": "二要素認証",
+    "MESSAGE": "デバイスに送信されたコードを入力してください。",
+    "METHOD_MESSAGE": "確認コードの受信方法を選択してください。",
+    "CODE_LABEL": "確認コード",
+    "PHONE_LABEL": "電話番号",
+    "METHOD_LABEL": "確認方法",
+    "METHODS": {
+      "EMAIL": "メール",
+      "PHONE": "電話"
+    },
+    "SUBMIT": "確認",
+    "NEXT": "次へ",
+    "BACK_TO_LOGIN": "ログインへ戻る",
+    "ERROR_CODE_REQUIRED": "コードは必須です",
+    "ERROR_PHONE_REQUIRED": "電話番号は必須です"
+  },
+  "RESET_PASSWORD": {
+    "TITLE": "パスワードをリセット",
+    "MESSAGE": "続行するには新しいパスワードを入力してください。",
+    "SUBMIT": "送信",
+    "PASSWORD_RULES": "パスワードには大文字、小文字、数字、特殊文字を含める必要があります。",
+    "ERROR_PASSWORD_REQUIRED": "パスワードは必須です",
+    "ERROR_CONFIRMATION_PASSWORD_REQUIRED": "パスワード確認は必須です",
+    "ERROR_PASSWORD_MIN_LENGTH": "パスワードは少なくとも6文字必要です",
+    "ERROR_PASSWORD_UPPERCASE": "パスワードには少なくとも1つの大文字が必要です",
+    "ERROR_PASSWORD_LOWERCASE": "パスワードには少なくとも1つの小文字が必要です",
+    "ERROR_PASSWORD_NUMBER": "パスワードには少なくとも1つの数字が必要です",
+    "ERROR_PASSWORD_SPECIAL": "パスワードには少なくとも1つの特殊文字が必要です",
+    "ERROR_PASSWORD_MISMATCH": "パスワードが一致しません"
+  }
+}

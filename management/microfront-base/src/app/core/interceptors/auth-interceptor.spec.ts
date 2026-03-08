@@ -4,11 +4,17 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { authInterceptor } from './auth-interceptor';
 
 describe('authInterceptor', () => {
-  const interceptor: HttpInterceptorFn = (req, next) => 
+  const interceptor: HttpInterceptorFn = (req, next) =>
     TestBed.runInInjectionContext(() => authInterceptor(req, next));
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: 'LocalStorageService', useValue: {} },
+        { provide: 'AuthService', useValue: {} },
+        { provide: 'HttpClient', useValue: {} },
+      ],
+    });
   });
 
   it('should be created', () => {

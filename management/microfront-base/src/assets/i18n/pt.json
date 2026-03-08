@@ -27,7 +27,8 @@
     "500_MESSAGE": "Algo deu errado. Tente novamente mais tarde.",
     "GENERIC_TITLE": "Erro inesperado",
     "GENERIC_MESSAGE": "Ocorreu um erro inesperado.",
-    "BACK_HOME": "Home"
+    "BACK_HOME": "Home",
+    "BACK_LOGIN": "Login"
   },
 
   "LOGIN": {

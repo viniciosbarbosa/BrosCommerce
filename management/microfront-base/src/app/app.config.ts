@@ -15,12 +15,8 @@ import { routes } from './app.routes';
 import { environment } from '../environments/environment';
 import { ThemeService } from './shared/services/theme/theme.service';
 import { authInterceptor } from './core/interceptors/auth-interceptor';
-
-function getBrowserLang(): string {
-  const browserLang = navigator.language?.split('-')[0];
-
-  return environment.supportedLangs.includes(browserLang) ? browserLang : environment.defaultLang;
-}
+import { Lang } from './shared/interfaces/lang/lang';
+import { LanguageService } from './shared/services/lang/language.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -37,9 +33,13 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       inject(ThemeService).init();
       const translate = inject(TranslateService);
-      const lang = getBrowserLang();
-      translate.addLangs(environment.supportedLangs);
-      return translate.use(lang);
+      const langService = inject(LanguageService);
+
+      const availableLanguages = Object.values(Lang).map((lang) => lang.code);
+      translate.addLangs(availableLanguages);
+
+      const initialLang = langService.currentLanguage();
+      return translate.use(initialLang);
     }),
   ],
 };

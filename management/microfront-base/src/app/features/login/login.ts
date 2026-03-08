@@ -63,8 +63,6 @@ export class Login {
         },
       });
     } else {
-      this.loading.set(true);
-      console.log('2FA Code:', event);
       this.loading.set(false);
     }
   }

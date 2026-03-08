@@ -5,7 +5,7 @@ import { RoleEnum } from '../enum/role.enum';
   providedIn: 'root',
 })
 export class RoleService {
-  currentUserRole = signal<RoleEnum>(RoleEnum.ONLOGGED);
+  private currentUserRole = signal<RoleEnum>(RoleEnum.ONLOGGED);
 
   setRole(role: RoleEnum) {
     this.currentUserRole.set(role);

@@ -27,7 +27,8 @@
     "500_MESSAGE": "Something went wrong. Please try again later.",
     "GENERIC_TITLE": "Unexpected error",
     "GENERIC_MESSAGE": "An unexpected error occurred.",
-    "BACK_HOME": "Home"
+    "BACK_HOME": "Home",
+    "BACK_LOGIN": "Login"
   },
   "LOGIN": {
     "SIGN_IN": "Sign In",

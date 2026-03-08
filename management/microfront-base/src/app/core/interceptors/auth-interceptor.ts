@@ -1,44 +1,50 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError, switchMap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, filter, switchMap, take, throwError } from 'rxjs';
 
 import { LocalStorageService } from '../services/local.storage/local.storage';
 import { LocalStorageKey } from '../../shared/enum/local-storage/localStorage';
+import { AuthService } from '../auth/auth.service';
+import { LoginService } from '../../features/login/service/login.service';
+
+let isRefreshing = false;
+const refreshTokenSubject = new BehaviorSubject<string | null>(null);
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const localStorageService = inject(LocalStorageService);
-  const http = inject(HttpClient);
+  const authService = inject(AuthService);
+  const loginService = inject(LoginService);
 
-  const jwtToken = localStorageService.getItem(LocalStorageKey.JWT_TOKEN);
+  const token = localStorageService.getItem(LocalStorageKey.TOKEN);
 
-  const authReq = jwtToken
+  const authReq = token
     ? req.clone({
         setHeaders: {
-          Authorization: `Bearer ${jwtToken}`,
+          Authorization: `Bearer ${token}`,
         },
       })
     : req;
 
   return next(authReq).pipe(
     catchError((error) => {
-      if (error.status === 401) {
-        const refreshToken = localStorageService.getItem(LocalStorageKey.REFRESH_TOKEN);
+      if (error.status !== 401 || req.url.includes('refresh-token')) {
+        return throwError(() => error);
+      }
 
-        if (!refreshToken) {
-          return throwError(() => error);
-        }
+      const refreshToken = localStorageService.getItem(LocalStorageKey.REFRESH_TOKEN);
 
-        return http.post<any>('/auth/refresh', { refreshToken }).pipe(
-          switchMap((response) => {
-            const newToken = response.token;
+      if (!refreshToken) {
+        loginService.loginOut();
+        return throwError(() => error);
+      }
 
-            localStorageService.setItem(LocalStorageKey.JWT_TOKEN, newToken);
-
+      if (isRefreshing) {
+        return refreshTokenSubject.pipe(
+          filter((token) => token !== null),
+          take(1),
+          switchMap((token) => {
             const retryReq = req.clone({
-              setHeaders: {
-                Authorization: `Bearer ${newToken}`,
-              },
+              setHeaders: { Authorization: `Bearer ${token}` },
             });
 
             return next(retryReq);
@@ -46,7 +52,32 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         );
       }
 
-      return throwError(() => error);
+      isRefreshing = true;
+      refreshTokenSubject.next(null);
+
+      return authService.refreshToken(refreshToken).pipe(
+        switchMap((response) => {
+          const newToken = response.token;
+
+          localStorageService.setItem(LocalStorageKey.TOKEN, newToken);
+
+          isRefreshing = false;
+
+          refreshTokenSubject.next(newToken);
+
+          const retryReq = req.clone({
+            setHeaders: { Authorization: `Bearer ${newToken}` },
+          });
+
+          return next(retryReq);
+        }),
+
+        catchError((refreshError) => {
+          isRefreshing = false;
+          loginService.loginOut();
+          return throwError(() => refreshError);
+        }),
+      );
     }),
   );
 };

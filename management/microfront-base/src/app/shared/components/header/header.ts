@@ -16,7 +16,7 @@ import { headerNavItems, profileNavItems } from './nav/items.nav.';
 import { themeIcons } from './nav/theme.nav';
 
 import { computed } from '@angular/core';
-import { AuthService } from '../../../core/auth/auth.service';
+import { RoleService } from '../../../core/guards/service/role.service';
 
 @Component({
   selector: 'app-header',
@@ -28,7 +28,7 @@ export class Header implements OnInit {
   private router = inject(Router);
   private matIconRegistry = inject(MatIconRegistry);
   private domSanitizer = inject(DomSanitizer);
-  private authService = inject(AuthService);
+  private roleService = inject(RoleService);
   protected readonly Theme = Theme;
   protected readonly Lang = Lang;
   protected readonly Object = Object;
@@ -38,13 +38,11 @@ export class Header implements OnInit {
   protected readonly languageService = inject(LanguageService);
   protected readonly isMenuOpen = signal(false);
   protected readonly navItems = computed(() =>
-    headerNavItems.filter(
-      (item) => !item.roles || item.roles.includes(this.authService.currentUserRole()),
-    ),
+    headerNavItems.filter((item) => !item.roles || item.roles.includes(this.roleService.getRole())),
   );
   protected readonly profileItems = computed(() =>
     profileNavItems.filter(
-      (item) => !item.roles || item.roles.includes(this.authService.currentUserRole()),
+      (item) => !item.roles || item.roles.includes(this.roleService.getRole()),
     ),
   );
 

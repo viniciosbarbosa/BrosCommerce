@@ -11,6 +11,8 @@ import { LoginRequest } from '../model/request/login.request';
 import { LoginResponse } from '../model/response/login.response';
 import { TwoFactorAuthRequest } from '../model/request/two.factor.request';
 import { RECOVERY } from '../model/request/recovery';
+import { InternalRoutes } from '../../../shared/routes/internal.routes';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +21,7 @@ export class LoginService extends HttpBaseService {
   private API_URL = environment.apiUrl;
   private localStorageService = inject(LocalStorageService);
   private roleService = inject(RoleService);
+  private router = inject(Router);
 
   loginIn(params: LoginRequest): Observable<LoginResponse> {
     return this.httpPost(this.API_URL, LOGIN_ENDPOINT.LOGIN, params);
@@ -26,8 +29,10 @@ export class LoginService extends HttpBaseService {
 
   loginOut() {
     this.localStorageService.removeItem(LocalStorageKey.TOKEN);
+    this.localStorageService.removeItem(LocalStorageKey.REFRESH_TOKEN);
     this.localStorageService.removeItem(LocalStorageKey.USER);
     this.roleService.setRole(RoleEnum.ONLOGGED);
+    this.router.navigateByUrl(InternalRoutes.LOGIN);
   }
 
   twoFactorAuth(params: TwoFactorAuthRequest): Observable<any> {

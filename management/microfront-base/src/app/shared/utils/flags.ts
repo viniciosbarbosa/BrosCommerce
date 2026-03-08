@@ -15,4 +15,8 @@ export const Flag = [
     name: 'pt',
     url: 'https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/pt.svg',
   },
+  {
+    name: 'jp',
+    url: 'https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/jp.svg',
+  },
 ];
