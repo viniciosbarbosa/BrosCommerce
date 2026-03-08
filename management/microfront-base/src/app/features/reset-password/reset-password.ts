@@ -18,6 +18,7 @@ import { Loading } from '../../shared/components/loading/loading';
 import { InternalRoutes } from '../../shared/routes/internal.routes';
 import { passwordsMatchValidator } from '../../shared/validator/passoword.match';
 import { passwordStrengthValidator } from '../../shared/validator/password.stregth';
+import { RESET_PASSWORD } from './model/request/resetPassword.request';
 
 @Component({
   selector: 'app-reset-password',
@@ -64,7 +65,10 @@ export class ResetPassword implements OnInit {
 
   isIdValid() {
     this.loading.set(true);
-    this.resetPasswordService.isIdValid(this.resetPasswordId()).subscribe({
+    let params = {
+      token: this.resetPasswordId(),
+    };
+    this.resetPasswordService.isIdValid(params).subscribe({
       next: () => {
         this.showForm.set(true);
         this.loading.set(false);
@@ -83,9 +87,12 @@ export class ResetPassword implements OnInit {
     }
 
     this.loading.set(true);
-    const { password } = this.form.value;
+    let params: RESET_PASSWORD = {
+      token: this.resetPasswordId(),
+      password: this.form.value.password,
+    };
 
-    this.resetPasswordService.resetPassword(this.resetPasswordId(), password).subscribe({
+    this.resetPasswordService.sendNewPassword(params).subscribe({
       next: () => {
         this.snackBar.showSuccess('PASSWORD_RESET_SUCCESS');
         this.router.navigate([InternalRoutes.LOGIN]);

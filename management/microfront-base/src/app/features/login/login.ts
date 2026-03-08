@@ -10,6 +10,8 @@ import { InternalRoutes } from '../../shared/routes/internal.routes';
 import { RoleService } from '../../core/guards/service/role.service';
 import { LoginService } from './service/login.service';
 import { RoleEnum } from '../../core/guards/enum/role.enum';
+import { snackBarMessage } from './enum/snackBar.enum';
+import { TwoFactorAuthRequest } from './model/request/two.factor.request';
 
 @Component({
   selector: 'app-login',
@@ -29,23 +31,28 @@ export class Login {
 
   handleLoginIn(event: LoginRequest): void {
     this.loading.set(true);
-    this.loginService.loginIn(event.email, event.password).subscribe({
+    let params = {
+      email: event.email,
+      password: event.password,
+    };
+    this.loginService.loginIn(params).subscribe({
       next: (response) => {
         this.handleViewStateChange(LoginViewState.SELECT_2_FACTOR_METHOD);
         console.log(response);
       },
       error: (error) => {
-        this.snackBar.showError(error.error?.message || 'Login failed');
+        this.snackBar.showError(error.error?.message || snackBarMessage.LOGIN_ERROR);
         this.loading.set(false);
       },
     });
   }
 
-  handleTwoFactorEmit(event: string): void {
-    if (event === 'email' || event === 'phone') {
+  handleTwoFactorEmit(event: TwoFactorAuthRequest | string): void {
+    if (event === 'email' || event == 'phone') {
       this.viewState.set(LoginViewState.TWO_FACTOR);
-      this.loginService.twoFactorAuth(event, event).subscribe({
+      this.loginService.twoFactorAuth(event).subscribe({
         next: (response) => {
+          console.log(response);
           this.viewState.set(LoginViewState.TWO_FACTOR);
           this.loading.set(false);
           // this.postLogin();
@@ -65,26 +72,17 @@ export class Login {
   handlePasswordRecovery(event: string): void {
     if (this.viewState() === LoginViewState.FORGOT_PASSWORD) {
       this.loading.set(true);
-      this.loginService.recovery({ email: event, phone: event }).subscribe({
+
+      let params = {
+        code: event,
+      };
+
+      this.loginService.recovery(params).subscribe({
         next: () => {
-          this.viewState.set(LoginViewState.RECOVERY_PASSWORD);
           this.loading.set(false);
         },
         error: (error) => {
           this.snackBar.showError(error.error?.message || 'Recovery failed');
-          this.loading.set(false);
-        },
-      });
-    } else if (this.viewState() === LoginViewState.RECOVERY_PASSWORD) {
-      this.loading.set(true);
-      this.loginService.recoverySuccess(event).subscribe({
-        next: () => {
-          this.snackBar.showSuccess('Password recovered successfully');
-          this.viewState.set(LoginViewState.LOGIN);
-          this.loading.set(false);
-        },
-        error: (error) => {
-          this.snackBar.showError(error.error?.message || 'Invalid code');
           this.loading.set(false);
         },
       });

@@ -6,6 +6,9 @@ import { RoleEnum } from '../guards/enum/role.enum';
 import { LocalStorageService } from '../services/local.storage/local.storage';
 import { LocalStorageKey } from '../../shared/enum/local-storage/localStorage';
 import { RoleService } from '../guards/service/role.service';
+import { Observable } from 'rxjs';
+import { AUTH_ENDPOINT } from './model/auth.endpoint';
+import { RefreshToken } from './model/response/refresh.token';
 
 @Injectable({
   providedIn: 'root',
@@ -22,5 +25,9 @@ export class AuthService extends HttpBaseService {
       this.localStorageService.getItem(LocalStorageKey.USER) !== null &&
       this.currentUserRole() !== RoleEnum.ONLOGGED
     );
+  }
+
+  refreshToken(): Observable<RefreshToken> {
+    return this.httpGet(this.API_URL, AUTH_ENDPOINT.REFRESH_TOKEN);
   }
 }

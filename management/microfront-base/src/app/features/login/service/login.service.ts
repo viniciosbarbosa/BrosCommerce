@@ -7,6 +7,10 @@ import { LocalStorageKey } from '../../../shared/enum/local-storage/localStorage
 import { LocalStorageService } from '../../../core/services/local.storage/local.storage';
 import { RoleService } from '../../../core/guards/service/role.service';
 import { RoleEnum } from '../../../core/guards/enum/role.enum';
+import { LoginRequest } from '../model/request/login.request';
+import { LoginResponse } from '../model/response/login.response';
+import { TwoFactorAuthRequest } from '../model/request/two.factor.request';
+import { RECOVERY } from '../model/request/recovery';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +20,8 @@ export class LoginService extends HttpBaseService {
   private localStorageService = inject(LocalStorageService);
   private roleService = inject(RoleService);
 
-  loginIn(email: string, password: string): Observable<any> {
-    return this.httpPost(this.API_URL, LOGIN_ENDPOINT.LOGIN, { email, password });
+  loginIn(params: LoginRequest): Observable<LoginResponse> {
+    return this.httpPost(this.API_URL, LOGIN_ENDPOINT.LOGIN, params);
   }
 
   loginOut() {
@@ -26,15 +30,11 @@ export class LoginService extends HttpBaseService {
     this.roleService.setRole(RoleEnum.ONLOGGED);
   }
 
-  twoFactorAuth(option: string, code: string): Observable<any> {
-    return this.httpPost(this.API_URL, LOGIN_ENDPOINT.TWO_FACTOR_AUTH, { option, code });
+  twoFactorAuth(params: TwoFactorAuthRequest): Observable<any> {
+    return this.httpPost(this.API_URL, LOGIN_ENDPOINT.TWO_FACTOR_AUTH, params);
   }
 
-  recovery(params: { email: string; phone: string }): Observable<any> {
+  recovery(params: RECOVERY): Observable<any> {
     return this.httpPost(this.API_URL, LOGIN_ENDPOINT.RECOVERY, params);
-  }
-
-  recoverySuccess(code: string): Observable<any> {
-    return this.httpPost(this.API_URL, LOGIN_ENDPOINT.RECOVERY_SUCCESS, code);
   }
 }

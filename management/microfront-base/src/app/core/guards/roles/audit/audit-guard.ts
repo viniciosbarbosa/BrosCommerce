@@ -1,5 +1,5 @@
 import { CanActivateFn } from '@angular/router';
 
-export const auditorGuard: CanActivateFn = (route, state) => {
+export const auditGuard: CanActivateFn = (route, state) => {
   return true;
 };
