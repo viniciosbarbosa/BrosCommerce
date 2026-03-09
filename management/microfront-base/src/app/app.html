@@ -1,8 +1,6 @@
-@if (false) {
+@if (isLogged()) {
   <app-header />
-  <app-header-mobile [isLogged]="isLogged()" />
-} @else {
-  <app-header-mobile />
 }
+<app-header-mobile [isLogged]="isLogged()" />
 <router-outlet />
 <app-footer />

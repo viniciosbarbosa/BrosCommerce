@@ -11,13 +11,9 @@ import { Footer } from './shared/components/footer/footer';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App implements OnInit {
+export class App {
   protected readonly title = signal('Bros E-Commerce');
   protected readonly authService = inject(AuthService);
 
-  isLogged = computed(() => this.authService.isAuthenticated);
-
-  ngOnInit(): void {
-    console.log(this.isLogged());
-  }
+  isLogged = computed(() => this.authService.isAuthenticated());
 }

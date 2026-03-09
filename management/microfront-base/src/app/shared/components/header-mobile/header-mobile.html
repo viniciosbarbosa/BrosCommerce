@@ -1,6 +1,6 @@
 @if (!headerService.isMenuOpen()) {
-  <nav class="mobile-nav-bar" [class.unlogged]="!isLogged()?.()">
-    @if (isLogged()?.()) {
+  <nav class="mobile-nav-bar" [class.unlogged]="!isLogged()">
+    @if (isLogged()) {
       <div class="nav-slot">
         @if (navItems()[0]) {
           <button class="nav-btn" [routerLink]="navItems()[0].route" routerLinkActive="active">
@@ -18,18 +18,20 @@
       </div>
     }
 
-    <div class="nav-slot home-slot">
-      <button
-        class="nav-btn home-btn"
-        routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <mat-icon>home</mat-icon>
-      </button>
-    </div>
+    @if (isLogged()) {
+      <div class="nav-slot home-slot">
+        <button
+          class="nav-btn home-btn"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <mat-icon>home</mat-icon>
+        </button>
+      </div>
+    }
 
-    @if (isLogged()?.()) {
+    @if (isLogged()) {
       <div class="nav-slot">
         @if (navItems()[2]) {
           <button class="nav-btn" [routerLink]="navItems()[2].route" routerLinkActive="active">

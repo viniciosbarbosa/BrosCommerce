@@ -22,7 +22,7 @@ import { RoleService } from '../../../core/guards/service/role.service';
   styleUrl: './header-mobile.scss',
 })
 export class HeaderMobile implements OnInit {
-  isLogged = input<Signal<boolean>>();
+  isLogged = input<boolean>(false);
   protected readonly isSettingsOpen = signal(false);
 
   protected readonly Theme = Theme;
@@ -50,7 +50,6 @@ export class HeaderMobile implements OnInit {
 
   ngOnInit(): void {
     this.registerIcons();
-    console.log(this.isLogged());
   }
 
   private registerIcons() {

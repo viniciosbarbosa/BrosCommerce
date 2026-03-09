@@ -22,9 +22,10 @@
   align-items: center;
 
   &.unlogged {
-    grid-template-columns: repeat(2, 1fr);
-    width: 60vw;
-    max-width: 250px;
+    grid-template-columns: 1fr;
+    width: auto;
+    padding: 0 $spacing-md;
+    max-width: 80px; // Just enough for one button
   }
 
   @include glassmorphism(1.5rem, 0.4, transparent);
