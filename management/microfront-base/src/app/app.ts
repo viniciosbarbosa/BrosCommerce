@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './shared/components/header/header';
 import { AuthService } from './core/auth/auth.service';
@@ -11,9 +11,13 @@ import { Footer } from './shared/components/footer/footer';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('Bros E-Commerce');
   protected readonly authService = inject(AuthService);
 
   isLogged = computed(() => this.authService.isAuthenticated);
+
+  ngOnInit(): void {
+    console.log(this.isLogged());
+  }
 }

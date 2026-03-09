@@ -1,37 +1,109 @@
-<div class="header-offline">
-  <div class="logo-wrapper">
-    <div class="logo">
-      <span class="logo-text">Bros</span><span class="logo-highlight">Commerce</span>
+@if (!headerService.isMenuOpen()) {
+  <nav class="mobile-nav-bar" [class.unlogged]="!isLogged()?.()">
+    @if (isLogged()?.()) {
+      <div class="nav-slot">
+        @if (navItems()[0]) {
+          <button class="nav-btn" [routerLink]="navItems()[0].route" routerLinkActive="active">
+            <mat-icon>{{ navItems()[0].icon }}</mat-icon>
+          </button>
+        }
+      </div>
+
+      <div class="nav-slot">
+        @if (navItems()[1]) {
+          <button class="nav-btn" [routerLink]="navItems()[1].route" routerLinkActive="active">
+            <mat-icon>{{ navItems()[1].icon }}</mat-icon>
+          </button>
+        }
+      </div>
+    }
+
+    <div class="nav-slot home-slot">
+      <button
+        class="nav-btn home-btn"
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon>home</mat-icon>
+      </button>
+    </div>
+
+    @if (isLogged()?.()) {
+      <div class="nav-slot">
+        @if (navItems()[2]) {
+          <button class="nav-btn" [routerLink]="navItems()[2].route" routerLinkActive="active">
+            <mat-icon>{{ navItems()[2].icon }}</mat-icon>
+          </button>
+        }
+      </div>
+    }
+
+    <div class="nav-slot">
+      <button class="nav-btn" (click)="toggleSettings()" [class.active]="isSettingsOpen()">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+  </nav>
+}
+
+@if (isSettingsOpen()) {
+  <div class="settings-overlay" (click)="toggleSettings()">
+    <div class="settings-menu" (click)="$event.stopPropagation()">
+      <div class="scroll-container">
+        <div class="menu-header">
+          <h3>{{ 'HEADER.SETTINGS' | translate }}</h3>
+          <button class="close-btn" (click)="toggleSettings()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <div class="menu-section">
+          <span class="section-label">{{ 'HEADER.PROFILE' | translate }}</span>
+          <div class="profile-links">
+            @for (item of profileItems(); track item.label) {
+              <a [routerLink]="item.route" class="menu-link" (click)="toggleSettings()">
+                <mat-icon>{{ item.icon }}</mat-icon>
+                <span>{{ item.label | translate }}</span>
+              </a>
+            }
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="menu-section">
+          <span class="section-label">{{ 'HEADER.THEME' | translate }}</span>
+          <div class="theme-grid">
+            @for (t of themeList; track t) {
+              <button
+                class="theme-btn"
+                [class.active]="themeService.currentTheme() === t"
+                (click)="setTheme(t)"
+              >
+                <mat-icon>{{ themeIcons[t] }}</mat-icon>
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="menu-section">
+          <span class="section-label">{{ 'HEADER.LANG' | translate }}</span>
+          <div class="lang-grid">
+            @for (lang of Object.values(Lang); track lang.code) {
+              <button
+                class="lang-btn"
+                [class.active]="languageService.currentLanguage() === lang.code"
+                (click)="changeLanguage(lang.code)"
+              >
+                <mat-icon [svgIcon]="lang.icon"></mat-icon>
+              </button>
+            }
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="config-actions">
-    <div class="selector-group">
-      @for (lang of Object.values(Lang); track lang.code) {
-        <button
-          class="icon-btn"
-          [class.active]="languageService.currentLanguage() === lang.code"
-          (click)="changeLanguage(lang.code)"
-          [title]="lang.name"
-        >
-          <mat-icon [svgIcon]="lang.icon"></mat-icon>
-        </button>
-      }
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="selector-group">
-      @for (t of themeList; track t) {
-        <button
-          class="icon-btn"
-          [class.active]="themeService.currentTheme() === t"
-          (click)="setTheme(t)"
-          [title]="t"
-        >
-          <mat-icon>{{ themeIcons[t] }}</mat-icon>
-        </button>
-      }
-    </div>
-  </div>
-</div>
+}

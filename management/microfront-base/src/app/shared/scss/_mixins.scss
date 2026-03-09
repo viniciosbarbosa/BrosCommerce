@@ -36,15 +36,17 @@
   justify-content: space-between;
 }
 
-@mixin glassmorphism($blur: 12px, $opacity: 0.85) {
+@mixin glassmorphism($blur: 12px, $opacity: 0.85, $bg: var(--bg-primary)) {
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur($blur);
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--bg-primary);
+    background: $bg;
     opacity: $opacity;
     z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
   }
 }

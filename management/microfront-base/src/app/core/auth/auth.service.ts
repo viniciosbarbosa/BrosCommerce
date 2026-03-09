@@ -20,12 +20,9 @@ export class AuthService extends HttpBaseService {
   private token = signal(this.localStorageService.getItem(LocalStorageKey.TOKEN));
   private user = signal(this.localStorageService.getItem(LocalStorageKey.USER));
 
-  isAuthenticated = computed(
-    () =>
-      this.token() !== null &&
-      this.user() !== null &&
-      this.roleService.getRole() !== RoleEnum.ONLOGGED,
-  );
+  isAuthenticated = computed(() => {
+    return !!this.token() && !!this.user();
+  });
 
   refreshToken(refreshToken: string): Observable<RefreshToken> {
     return this.httpPost(this.API_URL, AUTH_ENDPOINT.REFRESH_TOKEN, { refreshToken });

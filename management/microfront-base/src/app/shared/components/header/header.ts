@@ -14,9 +14,9 @@ import { Flag } from '../../utils/flags';
 
 import { headerNavItems, profileNavItems } from './nav/items.nav.';
 import { themeIcons } from './nav/theme.nav';
-
 import { computed } from '@angular/core';
 import { RoleService } from '../../../core/guards/service/role.service';
+import { HeaderService } from '../../services/header/header.service';
 
 @Component({
   selector: 'app-header',
@@ -36,7 +36,8 @@ export class Header implements OnInit {
   protected readonly InternalRoutes = InternalRoutes;
   protected readonly themeService = inject(ThemeService);
   protected readonly languageService = inject(LanguageService);
-  protected readonly isMenuOpen = signal(false);
+  protected readonly headerService = inject(HeaderService);
+  protected readonly isMenuOpen = this.headerService.isMenuOpen;
   protected readonly navItems = computed(() =>
     headerNavItems.filter((item) => !item.roles || item.roles.includes(this.roleService.getRole())),
   );
@@ -68,7 +69,7 @@ export class Header implements OnInit {
   }
 
   public toggleMenu() {
-    this.isMenuOpen.update((val) => !val);
+    this.headerService.toggleMenu();
   }
 
   public navigateToError(code: ErrorCode) {
