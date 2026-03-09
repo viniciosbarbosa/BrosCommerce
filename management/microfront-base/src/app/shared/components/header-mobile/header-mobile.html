@@ -60,19 +60,21 @@
           </button>
         </div>
 
-        <div class="menu-section">
-          <span class="section-label">{{ 'HEADER.PROFILE' | translate }}</span>
-          <div class="profile-links">
-            @for (item of profileItems(); track item.label) {
-              <a [routerLink]="item.route" class="menu-link" (click)="toggleSettings()">
-                <mat-icon>{{ item.icon }}</mat-icon>
-                <span>{{ item.label | translate }}</span>
-              </a>
-            }
+        @if (isLogged()) {
+          <div class="menu-section">
+            <span class="section-label">{{ 'HEADER.PROFILE' | translate }}</span>
+            <div class="profile-links">
+              @for (item of profileItems(); track item.label) {
+                <a [routerLink]="item.route" class="menu-link" (click)="toggleSettings()">
+                  <mat-icon>{{ item.icon }}</mat-icon>
+                  <span>{{ item.label | translate }}</span>
+                </a>
+              }
+            </div>
           </div>
-        </div>
 
-        <div class="divider"></div>
+          <div class="divider"></div>
+        }
 
         <div class="menu-section">
           <span class="section-label">{{ 'HEADER.THEME' | translate }}</span>
