@@ -11,7 +11,6 @@ import { RoleService } from '../../core/guards/service/role.service';
 import { LoginService } from './service/login.service';
 import { RoleEnum } from '../../core/guards/enum/role.enum';
 import { snackBarMessage } from './enum/snackBar.enum';
-import { TwoFactorAuthRequest } from './model/request/two.factor.request';
 
 @Component({
   selector: 'app-login',
@@ -47,23 +46,45 @@ export class Login {
     });
   }
 
-  handleTwoFactorEmit(event: TwoFactorAuthRequest | string): void {
+  handleTwoFactorMethodEmit(event: string): void {
     if (event === 'email' || event == 'phone') {
       this.viewState.set(LoginViewState.TWO_FACTOR);
-      this.loginService.twoFactorAuth(event).subscribe({
+      this.loginService.twoFactorMethodAuth(event).subscribe({
         next: (response) => {
           console.log(response);
           this.viewState.set(LoginViewState.TWO_FACTOR);
           this.loading.set(false);
-          // this.postLogin();
         },
         error: (error) => {
-          this.snackBar.showError(error.error?.message || '2FA failed');
+          this.snackBar.showError(error.error?.message || '2FA Method failed');
           this.loading.set(false);
         },
       });
     } else {
       this.loading.set(false);
+    }
+  }
+
+  handleTwoFactorCodeEmit(event: string): void {
+    if (this.viewState() === LoginViewState.TWO_FACTOR) {
+      this.loading.set(true);
+
+      let params = {
+        code: event,
+      };
+
+      this.loginService.twoFactorCodeAuth(params).subscribe({
+        next: (response) => {
+          console.log(response);
+          //setDataLocalStorage()
+          this.router.navigate([InternalRoutes.HOME]);
+          this.loading.set(false);
+        },
+        error: (error) => {
+          this.snackBar.showError(error.error?.message || '2FA Code failed');
+          this.loading.set(false);
+        },
+      });
     }
   }
 

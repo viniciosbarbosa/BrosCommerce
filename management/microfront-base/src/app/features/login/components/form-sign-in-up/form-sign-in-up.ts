@@ -36,7 +36,8 @@ export class FormSignInUp {
   loading = input<boolean>(false);
   errorMessage = input<string | null>(null);
   loginEmit = output<LoginRequest>();
-  twoFactorAuthEmit = output<string>();
+  twoFactorAuthMethodEmit = output<string>();
+  twoFactorAuthCodeEmit = output<string>();
   passwordRecoveryEmit = output<string>();
   backToLogin = output<void>();
   viewStateChange = output<LoginViewState>();
@@ -92,7 +93,7 @@ export class FormSignInUp {
   private handleMethodSelection() {
     if (this.methodForm.invalid) return;
 
-    this.twoFactorAuthEmit.emit(this.methodForm.getRawValue().method);
+    this.twoFactorAuthMethodEmit.emit(this.methodForm.getRawValue().method);
   }
 
   private handleRecovery() {
@@ -108,7 +109,7 @@ export class FormSignInUp {
       this.twoFactorAuthForm.markAllAsTouched();
       return;
     }
-    this.twoFactorAuthEmit.emit(this.twoFactorAuthForm.getRawValue().code);
+    this.twoFactorAuthCodeEmit.emit(this.twoFactorAuthForm.getRawValue().code);
   }
 
   public onForgotPassword() {

@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Home } from './features/home/home';
 import { loadRemoteModule } from '@angular-architects/module-federation';
 import { environment } from '../environments/environment.development';
 import { InternalRoutes } from './shared/routes/internal.routes';
@@ -18,7 +17,7 @@ export const routes: Routes = [
         remoteEntry: environment.remotes.productCategory,
         exposedModule: './routes',
       }).then((m) => m.routes),
-    canActivate: [roleGuard([RoleEnum.MASTER, RoleEnum.ADMIN])],
+    // canActivate: [roleGuard([RoleEnum.MASTER, RoleEnum.ADMIN])],
   },
   {
     path: ExternalRoutes.REPORT,
@@ -28,7 +27,7 @@ export const routes: Routes = [
         remoteEntry: environment.remotes.report,
         exposedModule: './routes',
       }).then((m) => m.routes),
-    canActivate: [roleGuard([RoleEnum.MASTER, RoleEnum.AUDIT])],
+    // canActivate: [roleGuard([RoleEnum.MASTER, RoleEnum.AUDIT])],
   },
   {
     path: ExternalRoutes.USERS,
@@ -38,7 +37,7 @@ export const routes: Routes = [
         remoteEntry: environment.remotes.users,
         exposedModule: './routes',
       }).then((m) => m.routes),
-    canActivate: [roleGuard([RoleEnum.MASTER, RoleEnum.ADMIN])],
+    // canActivate: [roleGuard([RoleEnum.MASTER, RoleEnum.ADMIN])],
   },
   {
     path: InternalRoutes.PROFILE,
@@ -57,7 +56,7 @@ export const routes: Routes = [
   {
     path: InternalRoutes.HOME,
     loadComponent: () => import('./features/home/home').then((m) => m.Home),
-    canActivate: [roleGuard([RoleEnum.MASTER, RoleEnum.ADMIN, RoleEnum.AUDIT])],
+    // canActivate: [roleGuard([RoleEnum.MASTER, RoleEnum.ADMIN, RoleEnum.AUDIT])],
   },
   {
     path: InternalRoutes.RESET_PASSWORD,

@@ -9,7 +9,10 @@ import { RoleService } from '../../../core/guards/service/role.service';
 import { RoleEnum } from '../../../core/guards/enum/role.enum';
 import { LoginRequest } from '../model/request/login.request';
 import { LoginResponse } from '../model/response/login.response';
-import { TwoFactorAuthRequest } from '../model/request/two.factor.request';
+import {
+  TwoFactorCodeAuthRequest,
+  TwoFactorMethodAuthRequest,
+} from '../model/request/two.factor.request';
 import { RECOVERY } from '../model/request/recovery';
 import { InternalRoutes } from '../../../shared/routes/internal.routes';
 import { Router } from '@angular/router';
@@ -35,7 +38,11 @@ export class LoginService extends HttpBaseService {
     this.router.navigateByUrl(InternalRoutes.LOGIN);
   }
 
-  twoFactorAuth(params: TwoFactorAuthRequest): Observable<any> {
+  twoFactorMethodAuth(params: TwoFactorMethodAuthRequest): Observable<any> {
+    return this.httpPost(this.API_URL, LOGIN_ENDPOINT.TWO_FACTOR_AUTH, params);
+  }
+
+  twoFactorCodeAuth(params: TwoFactorCodeAuthRequest): Observable<any> {
     return this.httpPost(this.API_URL, LOGIN_ENDPOINT.TWO_FACTOR_AUTH, params);
   }
 

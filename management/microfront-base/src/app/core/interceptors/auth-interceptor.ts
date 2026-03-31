@@ -57,16 +57,16 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
       return authService.refreshToken(refreshToken).pipe(
         switchMap((response) => {
-          const newToken = response.token;
+          const refreshToken = response.token;
 
-          localStorageService.setItem(LocalStorageKey.TOKEN, newToken);
+          localStorageService.setItem(LocalStorageKey.TOKEN, refreshToken);
 
           isRefreshing = false;
 
-          refreshTokenSubject.next(newToken);
+          refreshTokenSubject.next(refreshToken);
 
           const retryReq = req.clone({
-            setHeaders: { Authorization: `Bearer ${newToken}` },
+            setHeaders: { Authorization: `Bearer ${refreshToken}` },
           });
 
           return next(retryReq);

@@ -16,7 +16,6 @@ import { RefreshToken } from './model/response/refresh.token';
 export class AuthService extends HttpBaseService {
   private API_URL = environment.apiUrl;
   private localStorageService = inject(LocalStorageService);
-  private roleService = inject(RoleService);
   private token = signal(this.localStorageService.getItem(LocalStorageKey.TOKEN));
   private user = signal(this.localStorageService.getItem(LocalStorageKey.USER));
 
